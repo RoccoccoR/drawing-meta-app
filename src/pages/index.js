@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import IntroButtonStart from "../../components/IntroButtonStart/IntroButtonStart";
+import IntroButtonStart from "../../components/IntroButtonStart/IntroButtonStart.js";
 import IntroText from "../../components/IntroText/IntroText";
 import MousePathTracker from "../../components/MouseTracker/MouseTracker";
 
