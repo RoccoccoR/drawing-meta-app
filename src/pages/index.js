@@ -7,7 +7,7 @@ export default function Home() {
   const router = useRouter();
 
   const goToSheetPage = () => {
-    router.push("/sheet");
+    router.push("/tool");
   };
 
   return (
