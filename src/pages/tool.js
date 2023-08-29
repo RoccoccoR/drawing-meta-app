@@ -1,10 +1,5 @@
-import MousePathTracker from "../../components/MouseTracker/MouseTracker";
+import Tool from "../../components/Tool";
 
-export default function Sheet() {
-  return (
-    <main className="main-container">
-      <div className="background-container">TEXT TEST</div>
-      <MousePathTracker />
-    </main>
-  );
+export default function Info() {
+  return <Tool />;
 }
