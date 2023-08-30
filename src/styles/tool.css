@@ -1,5 +1,28 @@
-/* .canvasPage {
-  background-color: white;
-  height: 594px;
+.saveButton,
+.downloadButton {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 50px;
+  width: auto;
+  font-size: 1rem;
+  border: 2px solid black;
+  width: 160px;
+}
+
+.saveButton {
+  color: #0f0;
+  background-color: black;
+}
+.downloadButton {
+  color: black;
+  background-color: #0f0;
+}
+
+.toolContainer {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
   width: 420px;
-} */
+}
