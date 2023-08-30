@@ -11,7 +11,7 @@ export default function tool() {
     // link.href = image;
     // link.download = "canvas_image.jpg";
     // link.click();
-    // console.log("Save button clicked", image);
+    console.log("Save button clicked");
   };
 
   const handleDownloadClick = () => {
