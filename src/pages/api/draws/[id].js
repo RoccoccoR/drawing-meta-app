@@ -1,5 +1,5 @@
-import dbConnect from "../../../../backend/db/db";
-import DrawModel from "../../../../backend/db/models/draw";
+import dbConnect from "../../../../db/connect";
+import DrawModel from "../../../../db/models/DrawModel";
 
 export default async function handler(request, response) {
   await dbConnect();
