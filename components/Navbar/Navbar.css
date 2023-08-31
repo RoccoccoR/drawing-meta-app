@@ -1,0 +1,12 @@
+.menubarItem {
+  font-size: 20px;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  padding: 20px;
+  width: 100vw;
+}
+
+.menuContainer {
+  display: flex;
+  flex-direction: row;
+}
