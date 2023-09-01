@@ -1,17 +1,23 @@
 import "@/styles/globals.css";
 import Layout from "../../components/Layout/Layout";
 import { SessionProvider } from "next-auth/react";
-import LogInBtn from "../../components/LogInBtn/LogInBtn";
+import { useRouter } from "next/router"; // Import the useRouter hook
 
-function MyApp({ Component, pageProps, session, router }) {
-  // Check if the current route is the main page
+function MyApp({ Component, pageProps, session }) {
+  const router = useRouter(); // Initialize the router
 
-  // Render the Layout component conditionally
   return (
     <>
       <SessionProvider session={session}>
-        <Component {...pageProps} />
-        <LogInBtn></LogInBtn>
+        {router.pathname === "/" ? (
+          // Don't render Layout on the root page
+          <Component {...pageProps} />
+        ) : (
+          // Render Layout on all other pages
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        )}
       </SessionProvider>
     </>
   );

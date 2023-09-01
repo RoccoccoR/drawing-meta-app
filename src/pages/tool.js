@@ -4,14 +4,10 @@ import { useRef } from "react";
 export default function tool() {
   const canvasRef = useRef(null);
 
-  const handleSaveClick = () => {
-    // const canvas = canvasRef.current;
-    // const image = canvas.toDataURL();
-    // const link = document.createElement("a");
-    // link.href = image;
-    // link.download = "canvas_image.jpg";
-    // link.click();
-    console.log("Save button clicked");
+  const handleSaveClick = async () => {
+    const canvas = canvasRef.current;
+    const image = canvas.toDataURL("image/jpeg");
+    console.log("Image Data URL:", image);
   };
 
   const handleDownloadClick = () => {
