@@ -1,3 +1,8 @@
+import { useSession, signOut } from "next-auth/react";
+
 export default function Profile() {
-  return <>Profile Page</>;
+  const { data: session, status } = useSession({ required: true });
+  if (!session) {
+    return <>Loading...</>;
+  }
 }

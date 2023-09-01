@@ -1,20 +1,18 @@
 import "@/styles/globals.css";
 import Layout from "../../components/Layout/Layout";
+import { SessionProvider } from "next-auth/react";
+import LogInBtn from "../../components/LogInBtn/LogInBtn";
 
-function MyApp({ Component, pageProps, router }) {
+function MyApp({ Component, pageProps, session, router }) {
   // Check if the current route is the main page
-  const isMainPage = router.pathname === "/";
 
   // Render the Layout component conditionally
   return (
     <>
-      {isMainPage ? (
+      <SessionProvider session={session}>
         <Component {...pageProps} />
-      ) : (
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      )}
+        <LogInBtn></LogInBtn>
+      </SessionProvider>
     </>
   );
 }

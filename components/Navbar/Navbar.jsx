@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LogInBtn from "../LogInBtn/LogInBtn";
 
 export default function Navbar() {
   return (
@@ -15,6 +16,7 @@ export default function Navbar() {
       <Link className="menubarItem" href="/info">
         Info
       </Link>
+      <LogInBtn />
     </div>
   );
 }

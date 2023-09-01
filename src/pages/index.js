@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import IntroButtonStart from "../../components/IntroButtonStart/IntroButtonStart.js";
+import IntroStartBtn from "../../components/IntroStartBtn/IntroStartBtn.jsx";
 import IntroText from "../../components/IntroText/IntroText";
 import MousePathTracker from "../../components/MouseTracker/MouseTracker";
 import React from "react";
@@ -15,7 +15,7 @@ export default function Home() {
     <main className="main-container">
       <div className="background-container">
         <IntroText />
-        <IntroButtonStart onClick={goToSheetPage} />
+        <IntroStartBtn onClick={goToSheetPage} />
       </div>
       <MousePathTracker />
     </main>
