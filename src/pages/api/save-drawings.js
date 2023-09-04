@@ -1,4 +1,4 @@
-import dbConnect from "../../../../db/connect";
+import dbConnect from "../../../db/connect";
 import Draw from "../../../db/models/DrawModel";
 
 export default async function handler(request, response) {
