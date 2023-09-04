@@ -1,12 +1,16 @@
-export default function Draw({ draw }) {
-  return (
-    <div className="drawContainer">
-      <h1>{draw.title}</h1>
-      <img src={draw.imageData} alt={draw.title} />
-      <span>{draw.userId}</span>
-    </div>
-  );
+export default function Draw() {
+  return <div></div>;
 }
+
+// export default function Draw({ draw }) {
+//   return (
+//     <div className="drawContainer">
+//       <h1>{draw.title}</h1>
+//       <img src={draw.imageData} alt={draw.title} />
+//       <span>{draw.userId}</span>
+//     </div>
+//   );
+// }
 
 // export async function getStaticPaths() {
 //   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/draws`);
