@@ -8,13 +8,13 @@ export default function Draw({ draw }) {
   );
 }
 
-export async function getStaticPaths() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/draws`);
-  const drawings = await response.json();
+// export async function getStaticPaths() {
+//   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/draws`);
+//   const drawings = await response.json();
 
-  const paths = drawings.map((drawing) => ({
-    params: { id: drawing._id },
-  }));
+//   const paths = drawings.map((drawing) => ({
+//     params: { id: drawing._id },
+//   }));
 
-  return { paths, fallback: false };
-}
+//   return { paths, fallback: false };
+// }
