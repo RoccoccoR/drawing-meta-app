@@ -1,13 +1,32 @@
 import FreeLine from "../../components/Tools/FreeLine";
 import { useRef } from "react";
 
-export default function tool() {
+export default function Tool() {
   const canvasRef = useRef(null);
 
   const handleSaveClick = async () => {
     const canvas = canvasRef.current;
     const image = canvas.toDataURL("image/jpeg");
-    console.log("Image Data URL:", image);
+
+    // Send the drawing data to your API route
+    try {
+      const response = await fetch("/api/save-drawing", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ imageData: image /* other data */ }),
+      });
+
+      if (response.ok) {
+        console.log("Drawing saved successfully");
+        // Optionally, you can redirect the user to their profile page
+      } else {
+        console.error("Failed to save drawing");
+      }
+    } catch (error) {
+      console.error("Error saving drawing:", error);
+    }
   };
 
   const handleDownloadClick = () => {

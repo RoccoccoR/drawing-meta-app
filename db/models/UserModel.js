@@ -3,8 +3,8 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  user: { type: String, required: true },
-  image: { type: String, required: true },
+  userId: { type: String, required: true },
+  imageData: { type: String, required: true },
   id: { type: String, required: true },
 });
 

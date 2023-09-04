@@ -10,11 +10,15 @@ export default function Archive() {
   return (
     <>
       Archive Page
-      <div>
-        {data.map((drawing) => {
-          return <h1 key={drawing._id}>{drawing._id}</h1>;
-        })}
-      </div>
+      {data.map((drawing) => {
+        return (
+          <div key={drawing._id}>
+            <h1>{drawing.imageData}</h1>
+            <h1>{drawing._id}</h1>
+            <h1>{drawing.user}</h1>
+          </div>
+        );
+      })}
     </>
   );
 }
