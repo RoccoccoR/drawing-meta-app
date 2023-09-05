@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import Image from "next/image";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
@@ -17,7 +18,7 @@ export default function Profile() {
                 width: "420px",
                 height: "594px",
               }}>
-              <img
+              <Image
                 src={drawing.imageData}
                 width="420"
                 height="594"
