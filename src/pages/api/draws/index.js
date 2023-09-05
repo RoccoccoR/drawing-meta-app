@@ -12,17 +12,15 @@ export default async function handler(request, response) {
         return response.status(404).json({ status: "Not Found" });
       }
 
-      console.log("Found draws:", draws);
       return response.status(200).json(draws);
     } catch (error) {
       console.error("Error:", error);
       return response.status(500).json({ message: "Internal Server Error" });
     }
   } else if (request.method === "POST") {
-    console.log("Request body::::::::::::::::::::", request.body);
     try {
       const { imageData /* other data */ } = request.body;
-      console.log("Request body:", request.body);
+
       // Create a new Draw document and save it to the database
       const newDraw = new Draw({ imageData /* other data */ });
       await newDraw.save();
