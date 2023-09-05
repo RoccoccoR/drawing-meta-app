@@ -7,10 +7,11 @@ export default function Tool() {
   const handleSaveClick = async () => {
     const canvas = canvasRef.current;
     const image = canvas.toDataURL("image/jpeg");
+    console.log("Image data:", image); // Log the image data
 
     // Send the drawing data to your API route
     try {
-      const response = await fetch("/api/save-drawing", {
+      const response = await fetch("/api/draws", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,7 +38,7 @@ export default function Tool() {
 
     const newContext = newCanvas.getContext("2d");
 
-    // Fill the new canvas with white background
+    // Fill the new canvas with a white background
     newContext.fillStyle = "white";
     newContext.fillRect(0, 0, newCanvas.width, newCanvas.height);
 
@@ -46,6 +47,7 @@ export default function Tool() {
 
     // Create a data URL for the new canvas (JPEG format)
     const image = newCanvas.toDataURL("image/jpeg");
+    console.log("Downloaded image data:", image); // Log the downloaded image data
 
     // Create a download link for the image
     const link = document.createElement("a");

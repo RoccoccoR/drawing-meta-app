@@ -13,10 +13,27 @@ export default async function handler(request, response) {
       }
 
       console.log("Found draws:", draws);
-      response.status(200).json(draws);
+      return response.status(200).json(draws);
     } catch (error) {
       console.error("Error:", error);
-      response.status(500).json({ message: "Internal Server Error" });
+      return response.status(500).json({ message: "Internal Server Error" });
     }
+  } else if (request.method === "POST") {
+    try {
+      const { imageData /* other data */ } = request.body;
+      console.log("Request body:", request.body);
+      // Create a new Draw document and save it to the database
+      const newDraw = new Draw({ imageData /* other data */ });
+      await newDraw.save();
+      console.log("Drawing saved successfully:", newDraw);
+      return response
+        .status(201)
+        .json({ message: "Drawing saved successfully" });
+    } catch (error) {
+      console.error("Error saving drawing:", error);
+      return response.status(500).json({ message: "Internal Server Error" });
+    }
+  } else {
+    return response.status(405).json({ message: "Method Not Allowed" });
   }
 }
