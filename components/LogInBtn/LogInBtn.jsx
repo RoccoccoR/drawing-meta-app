@@ -11,14 +11,18 @@ export default function LogInBtn() {
           alt="user-image"
           style={{ borderRadius: "50px" }}
         /> */}
-        <button onClick={() => signOut()}>Sign out</button>
+        <button className="logOutBtn" onClick={() => signOut()}>
+          Sign out
+        </button>
       </>
     );
   }
   return (
     <>
       Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
+      <button className="logInBtn" onClick={() => signIn()}>
+        Sign in
+      </button>
     </>
   );
 }
