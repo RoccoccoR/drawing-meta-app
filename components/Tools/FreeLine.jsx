@@ -6,17 +6,17 @@ export default function FreeLine({ canvasRef }) {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
-      canvas.width = 420 * 2;
-      canvas.height = 594 * 2;
+      canvas.width = 840;
+      canvas.height = 1188;
 
-      canvas.style.width = "420px";
-      canvas.style.height = "594px";
+      canvas.style.width = "840px";
+      canvas.style.height = "1188px";
 
       const context = canvas.getContext("2d");
       context.scale(1, 1);
       context.lineCap = "round";
       context.strokeStyle = "black";
-      context.lineWidth = 5;
+      context.lineWidth = 6;
       contextRef.current = context;
     }
   }, [canvasRef]);

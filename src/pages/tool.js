@@ -6,8 +6,7 @@ export default function Tool() {
 
   const handleSaveClick = async () => {
     const canvas = canvasRef.current;
-    const image = canvas.toDataURL("image/jpeg");
-    console.log("Image data:", image); // Log the image data
+    const image = canvas.toDataURL();
 
     // Send the drawing data to your API route
     try {
