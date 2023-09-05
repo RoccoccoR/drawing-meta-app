@@ -19,6 +19,7 @@ export default async function handler(request, response) {
       return response.status(500).json({ message: "Internal Server Error" });
     }
   } else if (request.method === "POST") {
+    console.log("Request body::::::::::::::::::::", request.body);
     try {
       const { imageData /* other data */ } = request.body;
       console.log("Request body:", request.body);
