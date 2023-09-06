@@ -1,8 +1,11 @@
 import FreeLine from "../../components/Tools/FreeLine";
 import { useRef } from "react";
+import { useSession } from "next-auth/react";
 
 export default function Tool() {
   const canvasRef = useRef(null);
+
+  const { data: session } = useSession();
 
   const handleSaveClick = async () => {
     const canvas = canvasRef.current;
@@ -15,7 +18,7 @@ export default function Tool() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ imageData: image /* other data */ }),
+        body: JSON.stringify({ imageData: image, userId: session.user.id }),
       });
 
       if (response.ok) {
