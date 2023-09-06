@@ -19,10 +19,10 @@ export default async function handler(request, response) {
     }
   } else if (request.method === "POST") {
     try {
-      const { imageData /* other data */ } = request.body;
+      const { imageData, userId } = request.body;
 
       // Create a new Draw document and save it to the database
-      const newDraw = new Draw({ imageData /* other data */ });
+      const newDraw = new Draw({ imageData, userId });
       await newDraw.save();
 
       return response
