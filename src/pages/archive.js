@@ -5,11 +5,18 @@ const fetcher = (url) => fetch(url).then((r) => r.json());
 
 export default function Archive() {
   const { data, error, isLoading } = useSWR("/api/draws", fetcher);
+
   if (isLoading) return <div>loading...</div>;
   if (error) return <div>no drawings here!</div>;
+
+  // Filter the data to include only drawings with published: true
+  const publishedDrawings = data.filter(
+    (drawing) => drawing.published === true
+  );
+
   return (
     <>
-      {data.map((drawing) => {
+      {publishedDrawings.map((drawing) => {
         return (
           <div key={drawing._id}>
             <div
