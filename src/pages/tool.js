@@ -18,7 +18,11 @@ export default function Tool() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ imageData: image, userId: session.user.id }),
+        body: JSON.stringify({
+          imageData: image,
+          userId: session.user.id /* add other data here */,
+          published: false,
+        }),
       });
 
       if (response.ok) {

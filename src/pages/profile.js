@@ -18,7 +18,7 @@ export default function Profile() {
       await fetch(`/api/draws/${id}`, {
         method: "DELETE",
       });
-      // Trigger a revalidation of the data to update the page
+
       mutate("/api/draws");
       push("/profile");
     } catch (error) {
@@ -26,6 +26,18 @@ export default function Profile() {
     }
   }
 
+  async function setPublished(drawing) {
+    try {
+      const response = await fetch(`/api/draws/${drawing._id}`, {
+        method: "PATCH",
+        body: JSON.stringify({ published: !drawing.published }),
+        headers: { "Content-Type": "application/json" },
+      });
+      mutate("/api/draws");
+    } catch (error) {
+      console.error("Error updating drawing:", error);
+    }
+  }
   return (
     <>
       {data.map((drawing) => {
@@ -48,6 +60,9 @@ export default function Profile() {
             <h1>{drawing.user}</h1>
             <button type="button" onClick={() => deleteDrawing(drawing._id)}>
               Delete
+            </button>
+            <button type="button" onClick={() => setPublished(drawing)}>
+              {drawing.published ? "Unpublish" : "Publish"}
             </button>
           </div>
         );

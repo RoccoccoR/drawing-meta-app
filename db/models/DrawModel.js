@@ -6,6 +6,7 @@ const drawSchema = new Schema({
   imageData: { type: String },
   title: { type: String },
   userId: { type: String },
+  published: { type: Boolean },
 });
 
 const Draw = mongoose.models.Draw || mongoose.model("Draw", drawSchema);
