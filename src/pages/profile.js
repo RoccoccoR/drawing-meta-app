@@ -38,6 +38,7 @@ export default function Profile() {
       console.error("Error updating drawing:", error);
     }
   }
+
   return (
     <>
       {data.map((drawing) => {
