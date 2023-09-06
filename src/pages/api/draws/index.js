@@ -24,7 +24,7 @@ export default async function handler(request, response) {
       // Create a new Draw document and save it to the database
       const newDraw = new Draw({ imageData /* other data */ });
       await newDraw.save();
-      console.log("Drawing saved successfully:", newDraw);
+
       return response
         .status(201)
         .json({ message: "Drawing saved successfully" });
