@@ -20,6 +20,7 @@ export const authOptions = {
       if (session?.user) {
         session.user.id = user.id;
       }
+      // console.log("session :", session);
       return session;
     },
   },

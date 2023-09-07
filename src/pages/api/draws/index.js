@@ -1,11 +1,14 @@
 import dbConnect from "../../../../db/connect";
 import Draw from "../../../../db/models/DrawModel";
+import { getSession } from "next-auth/react";
 
 export default async function handler(request, response) {
   await dbConnect();
 
   if (request.method === "GET") {
     try {
+      const session = await getSession({ request });
+
       const draws = await Draw.find();
 
       if (!draws) {

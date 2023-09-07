@@ -1,11 +1,17 @@
 import useSWR, { mutate } from "swr";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
 export default function Profile() {
-  const { data, error, isLoading } = useSWR("/api/draws", fetcher);
+  const { data: session } = useSession();
+  const { data, error, isLoading } = useSWR(
+    `/api/draws/${session?.user.id}`,
+    fetcher
+  );
+  // mutate("/api/draws");
 
   const router = useRouter();
   const { push } = router;
@@ -28,12 +34,21 @@ export default function Profile() {
 
   async function setPublished(drawing) {
     try {
-      const response = await fetch(`/api/draws/${drawing._id}`, {
-        method: "PATCH",
-        body: JSON.stringify({ published: !drawing.published }),
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await fetch(
+        `/api/draws/${drawing._id}`,
+
+        {
+          method: "PATCH",
+          body: JSON.stringify({
+            published: !drawing.published,
+            userId: drawing.userId,
+          }),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
       mutate("/api/draws");
+      push("/profile");
     } catch (error) {
       console.error("Error updating drawing:", error);
     }
