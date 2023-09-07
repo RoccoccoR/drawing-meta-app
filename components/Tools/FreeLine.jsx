@@ -22,10 +22,7 @@ export default function FreeLine({ canvasRef }) {
   }, [canvasRef]);
 
   const startDrawing = ({ nativeEvent }) => {
-    const { offsetX, offsetY } = getMousePosition(
-      canvasRef.current,
-      nativeEvent
-    );
+    const { offsetX, offsetY } = getPosition(canvasRef.current, nativeEvent);
     contextRef.current.beginPath();
     contextRef.current.moveTo(offsetX, offsetY);
     setIsDrawing(true);
@@ -40,20 +37,25 @@ export default function FreeLine({ canvasRef }) {
     if (!isDrawing) {
       return;
     }
-    const { offsetX, offsetY } = getMousePosition(
-      canvasRef.current,
-      nativeEvent
-    );
+    const { offsetX, offsetY } = getPosition(canvasRef.current, nativeEvent);
     contextRef.current.lineTo(offsetX, offsetY);
     contextRef.current.stroke();
   };
 
-  const getMousePosition = (canvas, event) => {
+  const getPosition = (canvas, event) => {
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
-    const offsetX = (event.clientX - rect.left) * scaleX;
-    const offsetY = (event.clientY - rect.top) * scaleY;
+    let offsetX, offsetY;
+
+    if (event.touches && event.touches.length === 1) {
+      offsetX = (event.touches[0].clientX - rect.left) * scaleX;
+      offsetY = (event.touches[0].clientY - rect.top) * scaleY;
+    } else {
+      offsetX = (event.clientX - rect.left) * scaleX;
+      offsetY = (event.clientY - rect.top) * scaleY;
+    }
+
     return { offsetX, offsetY };
   };
 
@@ -64,6 +66,9 @@ export default function FreeLine({ canvasRef }) {
       onMouseDown={startDrawing}
       onMouseUp={finishDrawing}
       onMouseMove={draw}
+      onTouchStart={startDrawing}
+      onTouchEnd={finishDrawing}
+      onTouchMove={draw}
       ref={canvasRef}
       style={{
         maxWidth: "420px",
