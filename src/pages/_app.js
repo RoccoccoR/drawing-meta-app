@@ -3,7 +3,7 @@ import Layout from "../../components/Layout/Layout";
 import { SessionProvider } from "next-auth/react";
 import { useRouter } from "next/router"; // Import the useRouter hook
 
-function MyApp({ Component, pageProps, session }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const router = useRouter(); // Initialize the router
 
   return (

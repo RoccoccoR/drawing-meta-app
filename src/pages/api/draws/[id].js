@@ -6,8 +6,7 @@ export default async function handler(request, response) {
   const { id } = request.query;
 
   if (request.method === "GET") {
-    const draw = await DrawModel.findById(id);
-
+    const draw = await DrawModel.find({ userId: id });
     if (!draw) {
       return response.status(404).json({ status: "Not Found" });
     }
@@ -27,7 +26,7 @@ export default async function handler(request, response) {
 
   if (request.method === "PATCH") {
     const draw = await DrawModel.findByIdAndUpdate(id, request.body);
-    console.log(request.body);
+
     if (!draw) {
       return response.status(404).json({ status: "Not Found" });
     }
