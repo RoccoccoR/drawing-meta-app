@@ -10,6 +10,15 @@
   width: 160px;
 }
 
+/* comment this */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
 .saveButton {
   color: #0f0;
   background-color: black;
@@ -19,9 +28,23 @@
   background-color: #0f0;
 }
 
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
 .toolContainer {
   display: grid;
   justify-items: center;
   gap: 10px;
   width: 420px;
+}
+
+/* comment this */
+canvas {
+  display: fixed;
 }

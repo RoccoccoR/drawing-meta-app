@@ -73,10 +73,20 @@ export default function Profile() {
             </div>
             <h1>{drawing._id}</h1>
             <h1>{drawing.user}</h1>
-            <button type="button" onClick={() => deleteDrawing(drawing._id)}>
+            <button
+              type="button"
+              onClick={(event) => {
+                event.preventDefault();
+                deleteDrawing(drawing._id);
+              }}>
               Delete
             </button>
-            <button type="button" onClick={() => setPublished(drawing)}>
+            <button
+              type="button"
+              onClick={(event) => {
+                event.preventDefault();
+                setPublished(drawing);
+              }}>
               {drawing.published ? "Unpublish" : "Publish"}
             </button>
           </div>
