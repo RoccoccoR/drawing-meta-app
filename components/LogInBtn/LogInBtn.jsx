@@ -6,7 +6,7 @@ export default function LogInBtn() {
   if (session) {
     return (
       <>
-        Hey {session.user.name} <br />
+        {/* Hey {session.user.name} <br /> */}
         {/* <img
           src={session.user.image}
           alt="user-image"
@@ -20,7 +20,7 @@ export default function LogInBtn() {
   }
   return (
     <>
-      Not signed in <br />
+      {/* Not signed in <br /> */}
       <button className="logInBtn" onClick={() => signIn()}>
         Sign in
       </button>
