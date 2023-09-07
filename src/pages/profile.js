@@ -11,7 +11,7 @@ export default function Profile() {
     `/api/draws/${session?.user.id}`,
     fetcher
   );
-  // mutate("/api/draws");
+  mutate("/api/draws");
 
   const router = useRouter();
   const { push } = router;
