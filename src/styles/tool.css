@@ -10,15 +10,6 @@
   width: 160px;
 }
 
-/* comment this */
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
 .saveButton {
   color: #0f0;
   background-color: black;
@@ -45,6 +36,6 @@ main {
 }
 
 /* comment this */
-canvas {
+/* canvas {
   display: fixed;
-}
+} */

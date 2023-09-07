@@ -2,6 +2,7 @@ import useSWR, { mutate } from "swr";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import LogInBtn from "../../components/LogInBtn/LogInBtn";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
@@ -89,9 +90,13 @@ export default function Profile() {
               }}>
               {drawing.published ? "Unpublish" : "Publish"}
             </button>
+            <button type="button" onClick={() => downloadDrawing(imageData)}>
+              Download
+            </button>
           </div>
         );
       })}
+      <LogInBtn />
     </>
   );
 }
