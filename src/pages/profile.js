@@ -11,7 +11,7 @@ export default function Profile() {
     `/api/draws/${session?.user.id}`,
     fetcher
   );
-  mutate("/api/draws");
+  mutate(`/api/draws/${session?.user.id}`);
 
   const router = useRouter();
   const { push } = router;
@@ -25,8 +25,7 @@ export default function Profile() {
         method: "DELETE",
       });
 
-      mutate("/api/draws");
-      push("/profile");
+      mutate(`/api/draws/${session?.user.id}`);
     } catch (error) {
       console.error("Error deleting drawing:", error);
     }
@@ -47,8 +46,8 @@ export default function Profile() {
         }
       );
 
-      mutate("/api/draws");
-      push("/profile");
+      mutate(`/api/draws/${session?.user.id}`);
+      // push("/profile");
     } catch (error) {
       console.error("Error updating drawing:", error);
     }
