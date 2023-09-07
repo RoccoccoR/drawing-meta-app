@@ -65,14 +65,16 @@ export default function Tool() {
   };
 
   return (
-    <div className="toolContainer">
-      <FreeLine canvasRef={canvasRef} />
-      <button className="saveButton" onClick={handleSaveClick}>
-        Save
-      </button>
-      <button className="downloadButton" onClick={handleDownloadClick}>
-        Download
-      </button>
+    <div className="pageWrapper">
+      <div className="toolContainer">
+        <FreeLine canvasRef={canvasRef} />
+        <button className="saveButton" onClick={handleSaveClick}>
+          Save
+        </button>
+        <button className="downloadButton" onClick={handleDownloadClick}>
+          Download
+        </button>
+      </div>
     </div>
   );
 }
