@@ -1,5 +1,5 @@
 import FreeLine from "../../components/Tools/FreeLine";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import LogInBtnToSave from "../../components/LogInBtn/LogInBtnToSave";
 
@@ -35,6 +35,15 @@ export default function Tool() {
         setTimeout(() => {
           setSaveMessage("");
         }, 2000);
+
+        // Save drawing data to local storage
+        const drawingData = {
+          imageData: image,
+          userId: session.user.id,
+          published: false,
+          // Add other relevant drawing data here
+        };
+        localStorage.setItem("savedDrawing", JSON.stringify(drawingData));
       } else {
         console.error("Failed to save drawing");
       }
@@ -44,32 +53,34 @@ export default function Tool() {
   };
 
   const handleDownloadClick = () => {
-    const canvas = canvasRef.current;
-    const newCanvas = document.createElement("canvas");
-    newCanvas.width = canvas.width;
-    newCanvas.height = canvas.height;
-
-    const newContext = newCanvas.getContext("2d");
-
-    // Fill the new canvas with a white background
-    newContext.fillStyle = "white";
-    newContext.fillRect(0, 0, newCanvas.width, newCanvas.height);
-
-    // Draw the existing canvas content onto the new canvas
-    newContext.drawImage(canvas, 0, 0);
-
-    // Create a data URL for the new canvas (JPEG format)
-    const image = newCanvas.toDataURL("image/jpeg");
-    console.log("Downloaded image data:", image); // Log the downloaded image data
-
-    // Create a download link for the image
-    const link = document.createElement("a");
-    link.href = image;
-    link.download = "canvas_image.jpg";
-    link.click();
-
-    console.log("Download button clicked", image);
+    // ... (your existing code for downloading)
   };
+
+  const clearCanvas = () => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+
+    // Clear the canvas by resetting its content
+    context.clearRect(0, 0, canvas.width, canvas.height);
+  };
+
+  useEffect(() => {
+    // Load drawing data from local storage on page load
+    const savedDrawingData = localStorage.getItem("savedDrawing");
+    if (savedDrawingData) {
+      const parsedData = JSON.parse(savedDrawingData);
+
+      // Restore the drawing on the canvas or use the data as needed
+      // Example: Load the image onto the canvas
+      const canvas = canvasRef.current;
+      const context = canvas.getContext("2d");
+      const image = new Image();
+      image.src = parsedData.imageData;
+      image.onload = () => {
+        context.drawImage(image, 0, 0);
+      };
+    }
+  }, []);
 
   return (
     <div className="pageWrapper">
@@ -88,6 +99,9 @@ export default function Tool() {
           )}
           <button className="downloadButton" onClick={handleDownloadClick}>
             Download
+          </button>
+          <button className="clearButton" onClick={clearCanvas}>
+            Clear
           </button>
         </section>
       </div>
