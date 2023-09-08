@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 
-const MousePathTracker = () => {
+const PathTracker = () => {
   const canvasRef = useRef(null);
   const [path, setPath] = useState([]);
 
-  const handleMouseMove = (event) => {
-    const { clientX, clientY } = event;
+  const handleMove = (event) => {
+    const { clientX, clientY } = event.touches ? event.touches[0] : event;
     setPath((prevPath) => [...prevPath, { x: clientX, y: clientY }]);
   };
 
@@ -39,11 +39,13 @@ const MousePathTracker = () => {
 
     updateCanvas();
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMove);
+    window.addEventListener("touchmove", handleMove);
     window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mousemove", handleMove);
+      window.removeEventListener("touchmove", handleMove);
       window.removeEventListener("resize", handleResize);
     };
   }, [path]);
@@ -61,4 +63,4 @@ const MousePathTracker = () => {
   );
 };
 
-export default MousePathTracker;
+export default PathTracker;

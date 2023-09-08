@@ -32,6 +32,22 @@ export default function Profile() {
     }
   }
 
+  async function downloadDrawing(drawing) {
+    // complete this function so that it downloads the drawing  as a JPEG
+    // Hint: you can use the code from the tool page to download the drawing  as a JPEG
+    // Hint: you can use the code from the archive page to get the drawing  data
+
+    try {
+      await fetch(`/api/draws/${id}`, {
+        method: "GET",
+      });
+
+      mutate(`/api/draws/${session?.user.id}`);
+    } catch (error) {
+      console.error("Error download drawing:", error);
+    }
+  }
+
   async function setPublished(drawing) {
     try {
       const response = await fetch(
@@ -90,7 +106,7 @@ export default function Profile() {
               }}>
               {drawing.published ? "Unpublish" : "Publish"}
             </button>
-            <button type="button" onClick={() => downloadDrawing(imageData)}>
+            <button type="button" onClick={() => downloadDrawing(drawing)}>
               Download
             </button>
           </div>
