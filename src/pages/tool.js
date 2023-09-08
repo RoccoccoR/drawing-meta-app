@@ -1,9 +1,11 @@
 import FreeLine from "../../components/Tools/FreeLine";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useSession } from "next-auth/react";
+import LogInBtnToSave from "../../components/LogInBtn/LogInBtnToSave";
 
 export default function Tool() {
   const canvasRef = useRef(null);
+  const [saveMessage, setSaveMessage] = useState(""); // State for save message
 
   const { data: session } = useSession();
 
@@ -27,7 +29,12 @@ export default function Tool() {
 
       if (response.ok) {
         console.log("Drawing saved successfully");
-        // Optionally, you can redirect the user to their profile page
+        setSaveMessage("Drawing saved in the profile page"); // Set save message
+
+        // Clear the message after 2 seconds
+        setTimeout(() => {
+          setSaveMessage("");
+        }, 2000);
       } else {
         console.error("Failed to save drawing");
       }
@@ -68,12 +75,21 @@ export default function Tool() {
     <div className="pageWrapper">
       <div className="toolContainer">
         <FreeLine canvasRef={canvasRef} />
-        <button className="saveButton" onClick={handleSaveClick}>
-          Save
-        </button>
-        <button className="downloadButton" onClick={handleDownloadClick}>
-          Download
-        </button>
+        {saveMessage && <p>{saveMessage}</p>} {/* Display save message */}
+        <section className="toolButtonsContainer">
+          {session ? (
+            <>
+              <button className="saveButton" onClick={handleSaveClick}>
+                Save
+              </button>
+            </>
+          ) : (
+            <LogInBtnToSave />
+          )}
+          <button className="downloadButton" onClick={handleDownloadClick}>
+            Download
+          </button>
+        </section>
       </div>
     </div>
   );

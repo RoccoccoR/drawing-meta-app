@@ -35,6 +35,23 @@
   width: 420px;
 }
 
+.downloadButton:hover {
+  color: #0f0;
+  background-color: black;
+}
+
+.saveButton:hover {
+  color: black;
+  background-color: #0f0;
+}
+
+.toolButtonsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 /* comment this */
 /* canvas {
   display: fixed;
