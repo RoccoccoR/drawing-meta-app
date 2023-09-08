@@ -1,0 +1,17 @@
+.logInBtnToSave {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  height: 40px;
+  font-size: 1rem;
+  border: 2px solid black;
+  width: 160px;
+  color: #0f0;
+  background-color: black;
+}
+
+.logInBtnToSave:hover {
+  color: black;
+  background-color: #0f0;
+}

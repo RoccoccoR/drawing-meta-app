@@ -1,6 +1,7 @@
 @import "../styles/tool.css";
 @import "../../components/Navbar/Navbar.css";
 @import "../../components/LogInBtn/LogInBtn.css";
+@import "../../components/LogInBtn/LogInBtnToSave.css";
 
 * {
   box-sizing: border-box;

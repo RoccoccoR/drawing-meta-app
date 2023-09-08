@@ -33,9 +33,9 @@ export default function Profile() {
   }
 
   async function downloadDrawing(drawing) {
-    // complete this function so that it downloads the drawing  as a JPEG
-    // Hint: you can use the code from the tool page to download the drawing  as a JPEG
-    // Hint: you can use the code from the archive page to get the drawing  data
+    // complete this function so that it downloads the drawing as a JPEG
+    // Hint: you can use the code from the tool page to download the drawing as a JPEG
+    // Hint: you can use the code from the archive page to get the drawing data
 
     try {
       await fetch(`/api/draws/${id}`, {
@@ -50,18 +50,14 @@ export default function Profile() {
 
   async function setPublished(drawing) {
     try {
-      const response = await fetch(
-        `/api/draws/${drawing._id}`,
-
-        {
-          method: "PATCH",
-          body: JSON.stringify({
-            published: !drawing.published,
-            userId: drawing.userId,
-          }),
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      const response = await fetch(`/api/draws/${drawing._id}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          published: !drawing.published,
+          userId: drawing.userId,
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
 
       mutate(`/api/draws/${session?.user.id}`);
       // push("/profile");
@@ -70,9 +66,12 @@ export default function Profile() {
     }
   }
 
+  // Reverse the data array to display drawings in reverse order
+  const reversedData = [...data].reverse();
+
   return (
     <>
-      {data.map((drawing) => {
+      {reversedData.map((drawing) => {
         return (
           <div key={drawing._id}>
             <div
