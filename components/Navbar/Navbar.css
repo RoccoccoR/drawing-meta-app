@@ -4,6 +4,8 @@
   border-bottom: 2px solid black;
   padding: 20px;
   width: 100vw;
+  display: flex;
+  justify-content: center;
 }
 
 .menuContainer {
