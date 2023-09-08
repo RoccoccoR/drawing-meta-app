@@ -1,1 +1,0 @@
-When the user clicks the "Save" button, capture the drawing's data and save it in a suitable data structure. This could be an array of objects, where each object represents a drawing command or a specific point in the drawing. This data structure should be saved to a database that I have to create in MongoDB
