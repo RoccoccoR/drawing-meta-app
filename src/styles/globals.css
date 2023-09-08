@@ -70,6 +70,16 @@ body.info main {
   position: fixed;
 } */
 
+
 /* main {
   position: fixed;
 } */
+/* 
+html {
+  position: fixed;
+  height: 100vh;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+*/
+
