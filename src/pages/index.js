@@ -13,7 +13,7 @@ export default function Home() {
   };
 
   return (
-    <main className="main-container">
+    <main className="main-container rootHomepage">
       <div className="background-container">
         <IntroText className="introText" />
         <LogInBtn onClick={goToSheetPage} />

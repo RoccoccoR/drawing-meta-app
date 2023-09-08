@@ -1,3 +1,3 @@
 export default function Info() {
-  return <>Info Page</>;
+  return <section className="infoPage">Info Page</section>;
 }
