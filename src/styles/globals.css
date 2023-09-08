@@ -73,4 +73,6 @@ body.info main {
 html {
   position: fixed;
   height: 100vh;
+  overflow: hidden;
+  overscroll-behavior: none;
 }
