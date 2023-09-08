@@ -6,9 +6,25 @@ const PathTracker = () => {
 
   const handleMove = (event) => {
     const { clientX, clientY } = event.touches ? event.touches[0] : event;
-    setPath((prevPath) => [...prevPath, { x: clientX, y: clientY }]);
-  };
 
+    // Calculate the distance between the last point in the path and the current point
+    const lastPoint = path[path.length - 1];
+    if (!lastPoint) {
+      // If there's no previous point, just add the current point to start a new path
+      setPath((prevPath) => [...prevPath, { x: clientX, y: clientY }]);
+    } else {
+      const distance = Math.sqrt(
+        Math.pow(clientX - lastPoint.x, 2) + Math.pow(clientY - lastPoint.y, 2)
+      );
+      // Define a threshold for when to start a new path
+      const distanceThreshold = 10; // Adjust this threshold as needed
+
+      if (distance >= distanceThreshold) {
+        // Start a new path if the distance is greater than the threshold
+        setPath((prevPath) => [...prevPath, { x: clientX, y: clientY }]);
+      }
+    }
+  };
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
