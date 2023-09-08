@@ -1,30 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 
-const PathTracker = () => {
+const MousePathTracker = () => {
   const canvasRef = useRef(null);
   const [path, setPath] = useState([]);
 
-  const handleMove = (event) => {
-    const { clientX, clientY } = event.touches ? event.touches[0] : event;
-
-    // Calculate the distance between the last point in the path and the current point
-    const lastPoint = path[path.length - 1];
-    if (!lastPoint) {
-      // If there's no previous point, just add the current point to start a new path
-      setPath((prevPath) => [...prevPath, { x: clientX, y: clientY }]);
-    } else {
-      const distance = Math.sqrt(
-        Math.pow(clientX - lastPoint.x, 2) + Math.pow(clientY - lastPoint.y, 2)
-      );
-      // Define a threshold for when to start a new path
-      const distanceThreshold = 10; // Adjust this threshold as needed
-
-      if (distance >= distanceThreshold) {
-        // Start a new path if the distance is greater than the threshold
-        setPath((prevPath) => [...prevPath, { x: clientX, y: clientY }]);
-      }
-    }
+  const handleMouseMove = (event) => {
+    const { clientX, clientY } = event;
+    setPath((prevPath) => [...prevPath, { x: clientX, y: clientY }]);
   };
+
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
@@ -55,13 +39,11 @@ const PathTracker = () => {
 
     updateCanvas();
 
-    window.addEventListener("mousemove", handleMove);
-    window.addEventListener("touchmove", handleMove);
+    window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("mousemove", handleMove);
-      window.removeEventListener("touchmove", handleMove);
+      window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
     };
   }, [path]);
@@ -79,4 +61,4 @@ const PathTracker = () => {
   );
 };
 
-export default PathTracker;
+export default MousePathTracker;
