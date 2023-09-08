@@ -71,9 +71,13 @@ export default function FreeLine({ canvasRef }) {
       onTouchMove={draw}
       ref={canvasRef}
       style={{
+        minHeight: "297px",
+        minWidth: "210px",
         maxWidth: "420px",
         maxHeight: "594px",
         background: "white",
+        width: "100%",
+        height: "auto",
       }}></canvas>
   );
 }

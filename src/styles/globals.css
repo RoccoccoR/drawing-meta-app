@@ -91,3 +91,10 @@ a {
   overflow: hidden;
   overscroll-behavior: none;
 }
+
+/* .menuContainer {
+  position: fixed;
+  width: 100vw;
+  overflow: hidden;
+  overscroll-behavior: none;
+} */
