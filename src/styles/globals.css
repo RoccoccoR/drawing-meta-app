@@ -63,3 +63,13 @@ a {
     font-size: 2rem;
   }
 }
+/* 
+body.home main,
+body.tool main,
+body.info main {
+  position: fixed;
+} */
+
+main {
+  position: fixed;
+}

@@ -53,7 +53,7 @@ export default function Tool() {
   };
 
   const handleDownloadClick = () => {
-    // ... (your existing code for downloading)
+    // ... implement download logic here
   };
 
   const clearCanvas = () => {
