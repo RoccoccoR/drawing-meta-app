@@ -83,7 +83,7 @@ export default function Tool() {
   }, []);
 
   return (
-    <div className="pageWrapper">
+    <div className="pageWrapper toolPage">
       <div className="toolContainer">
         <FreeLine canvasRef={canvasRef} />
         {saveMessage && <p>{saveMessage}</p>} {/* Display save message */}

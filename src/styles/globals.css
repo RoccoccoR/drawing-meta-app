@@ -63,14 +63,29 @@ a {
     font-size: 2rem;
   }
 }
-/* 
-body.home main,
-body.tool main,
-body.info main {
+
+/* main {
   position: fixed;
+  height: 100vh;
+  overflow: hidden;
+  overscroll-behavior: none;
 } */
 
-html {
+.rootHomepage {
+  position: fixed;
+  height: 100vh;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.toolPage {
+  position: fixed;
+  height: 100vh;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.infoPage {
   position: fixed;
   height: 100vh;
   overflow: hidden;
