@@ -70,9 +70,9 @@ body.info main {
   position: fixed;
 } */
 
-html {
+/* html {
   position: fixed;
   height: 100vh;
   overflow: hidden;
   overscroll-behavior: none;
-}
+} */
