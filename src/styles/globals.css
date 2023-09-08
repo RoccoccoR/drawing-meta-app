@@ -72,4 +72,5 @@ body.info main {
 
 main {
   position: fixed;
+  height: 100vh;
 }
