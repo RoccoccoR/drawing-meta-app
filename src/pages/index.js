@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import IntroText from "../../components/IntroText/IntroText";
-import MousePathTracker from "../../components/MouseTracker/MouseTracker";
+import PathTracker from "../../components/PathTracker/PathTracker";
 import React from "react";
 import LogInBtn from "../../components/LogInBtn/LogInBtn.jsx";
 import { getSession } from "next-auth/react";
@@ -18,7 +18,7 @@ export default function Home() {
         <IntroText className="introText" />
         <LogInBtn onClick={goToSheetPage} />
       </div>
-      <MousePathTracker />
+      <PathTracker />
     </main>
   );
 }
