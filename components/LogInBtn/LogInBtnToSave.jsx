@@ -22,7 +22,7 @@ export default function LogInBtn() {
     <>
       {/* Not signed in <br /> */}
       <button className="logInBtnToSave" onClick={() => signIn()}>
-        Sign in to save
+        Log in to save
       </button>
     </>
   );
