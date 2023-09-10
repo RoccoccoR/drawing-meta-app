@@ -1,4 +1,4 @@
-import FreeLine from "../../components/Tools/FreeLine";
+import FreeLineOnly from "../../components/Tools/FreeLineOnly";
 import { useRef, useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import LogInBtnToSave from "../../components/LogInBtn/LogInBtnToSave";
@@ -85,7 +85,7 @@ export default function Tool() {
   return (
     <div className="pageWrapper toolPage">
       <div className="toolContainer">
-        <FreeLine canvasRef={canvasRef} />
+        <FreeLineOnly canvasRef={canvasRef} />
         <section className="toolButtonsContainer">
           {saveMessage && <p>{saveMessage}</p>} {/* Display save message */}
           {session ? (

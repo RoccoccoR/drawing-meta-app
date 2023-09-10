@@ -36,16 +36,6 @@
   margin-bottom: 50px;
 }
 
-@media (max-width: 500px) {
-  .toolContainer {
-    background-color: red;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 90%;
-  }
-}
-
 .downloadButton:hover,
 .clearButton:hover {
   color: #0f0;
