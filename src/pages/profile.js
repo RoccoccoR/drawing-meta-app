@@ -70,48 +70,61 @@ export default function Profile() {
   const reversedData = [...data].reverse();
 
   return (
-    <>
+    <section className="profileGrid">
       {reversedData.map((drawing) => {
         return (
           <div key={drawing._id}>
             <div
-              style={{
-                backgroundColor: "white",
-                width: "420px",
-                height: "594px",
-              }}>
-              <Image
+            // style={{
+            //   backgroundColor: "white",
+            //   width: "420px",
+            //   height: "594px",
+            // }}
+            >
+              {/* <Image
                 src={drawing.imageData}
                 width="420"
                 height="594"
                 alt={`Drawing by ${drawing.user}`}
+              /> */}
+              <img
+                className="drawingProfileImage"
+                src={drawing.imageData}
+                alt={`Drawing by ${drawing.userId}`}
               />
             </div>
-            <h1>{drawing._id}</h1>
-            <h1>{drawing.user}</h1>
-            <button
-              type="button"
-              onClick={(event) => {
-                event.preventDefault();
-                deleteDrawing(drawing._id);
-              }}>
-              Delete
-            </button>
-            <button
-              type="button"
-              onClick={(event) => {
-                event.preventDefault();
-                setPublished(drawing);
-              }}>
-              {drawing.published ? "Unpublish" : "Publish"}
-            </button>
-            <button type="button" onClick={() => downloadDrawing(drawing)}>
-              Download
-            </button>
+            {/* <h1>{drawing._id}</h1>
+            <h1>{drawing.user}</h1> */}
+            <div className="toolButtonsContainerProfile">
+              <button
+                className="publishButton"
+                type="button"
+                onClick={(event) => {
+                  event.preventDefault();
+                  setPublished(drawing);
+                }}>
+                {drawing.published ? "Unpublish" : "Publish"}
+              </button>
+              <button
+                className="deleteButton"
+                type="button"
+                onClick={(event) => {
+                  event.preventDefault();
+                  deleteDrawing(drawing._id);
+                }}>
+                Delete
+              </button>
+              <button
+                className="downloadButton"
+                type="button"
+                onClick={() => downloadDrawing(drawing)}>
+                Download
+              </button>
+            </div>
           </div>
         );
       })}
       <LogInBtn />
-    </>
+    </section>
   );
 }

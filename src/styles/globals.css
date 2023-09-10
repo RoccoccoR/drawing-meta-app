@@ -1,5 +1,6 @@
 @import "../styles/tool.css";
 @import "../styles/archive.css";
+@import "../styles/profile.css";
 @import "../../components/Navbar/Navbar.css";
 @import "../../components/LogInBtn/LogInBtn.css";
 @import "../../components/LogInBtn/LogInBtnToSave.css";

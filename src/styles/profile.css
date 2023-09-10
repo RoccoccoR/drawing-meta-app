@@ -1,0 +1,88 @@
+.drawingProfileImage {
+  width: 100%;
+  background-color: white;
+}
+
+.profileGrid {
+  display: grid;
+  grid-gap: 1rem;
+  margin: 1rem;
+}
+
+.deleteButton,
+.publishButton,
+.downloadButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  height: 40px;
+  font-size: 1rem;
+  border: 2px solid black;
+  width: 28%;
+  padding: 0 1rem;
+  cursor: pointer;
+}
+
+.publishButton {
+  color: #0f0;
+  background-color: black;
+}
+
+.deleteButton {
+  color: black;
+  background-color: #0f0;
+}
+
+.publishButton:hover {
+  color: black;
+  background-color: #0f0;
+}
+
+.deleteButton:hover {
+  color: #0f0;
+  background-color: black;
+}
+
+.toolButtonsContainerProfile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* For screens larger than 1400 pixels (e.g., large desktop) */
+@media (min-width: 1401px) {
+  .profileGrid {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for large desktop */
+  }
+}
+
+/* For screens between 1399 pixels and 1050 pixels (e.g., desktop) */
+@media (max-width: 1399px) and (min-width: 1051px) {
+  .profileGrid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for desktop */
+  }
+}
+
+/* For screens smaller than or equal to 1050 pixels (e.g., tablet) */
+@media (max-width: 1050px) {
+  .profileGrid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablet */
+  }
+}
+
+/* For screens smaller than or equal to 710 pixels (e.g., mobile) */
+@media (max-width: 710px) {
+  .profileGrid {
+    grid-template-columns: repeat(1, 1fr); /* 1 column for mobile */
+  }
+}
+
+@media (max-width: 360px) {
+  .drawingProfileImage {
+    min-width: 300px;
+  }
+}
