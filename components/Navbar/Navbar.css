@@ -12,3 +12,11 @@
   display: flex;
   flex-direction: row;
 }
+
+.navBarDraw:hover,
+.navBarProfile:hover,
+.navBarArchive:hover,
+.navBarInfo:hover {
+  background-color: black;
+  color: #0f0;
+}
