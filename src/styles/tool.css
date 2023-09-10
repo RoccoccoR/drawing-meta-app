@@ -7,7 +7,7 @@
   height: 40px;
   font-size: 1rem;
   border: 2px solid black;
-  width: 160px;
+  width: 28%;
 }
 
 .saveButton {
@@ -60,9 +60,11 @@
 .toolButtonsContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  align-items: flex-end;
+  justify-content: space-evenly;
   gap: 1rem;
   margin-top: 1rem;
+  height: 5rem;
 }
 
 .clearButton {
@@ -73,7 +75,7 @@
   height: 40px;
   font-size: 1rem;
   border: 2px solid black;
-  width: 160px;
+  width: 28%;
   color: black;
   background-color: #0f0;
 }
@@ -81,3 +83,9 @@
 /* canvas {
   display: fixed;
 } */
+
+.clearButton,
+.saveButton,
+.downloadButton {
+  cursor: pointer;
+}

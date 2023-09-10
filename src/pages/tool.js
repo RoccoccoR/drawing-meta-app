@@ -86,8 +86,10 @@ export default function Tool() {
     <div className="pageWrapper toolPage">
       <div className="toolContainer">
         <FreeLine canvasRef={canvasRef} />
-        {saveMessage && <p>{saveMessage}</p>} {/* Display save message */}
         <section className="toolButtonsContainer">
+          <div>
+            {saveMessage && <p>{saveMessage}</p>} {/* Display save message */}
+          </div>
           {session ? (
             <>
               <button className="saveButton" onClick={handleSaveClick}>

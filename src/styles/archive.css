@@ -13,30 +13,48 @@
   margin: 1rem;
 }
 
-/* For screens larger than tablet width (e.g., desktop) */
-@media (min-width: 768px) {
+/* For screens larger than 1600 pixels */
+@media (min-width: 1601px) {
   .archiveGrid {
-    grid-template-columns: repeat(4, 1fr); /* 6 columns for desktop */
+    grid-template-columns: repeat(
+      7,
+      1fr
+    ); /* 7 columns for extra-large desktop */
   }
 }
 
-/* For screens at tablet size */
-@media (max-width: 767px) {
+/* For screens between 1301 pixels and 1600 pixels */
+@media (min-width: 1301px) and (max-width: 1600px) {
   .archiveGrid {
-    grid-template-columns: repeat(3, 1fr); /* 4 columns for tablet */
+    grid-template-columns: repeat(6, 1fr); /* 6 columns */
   }
 }
 
-/* For mobile screens */
-@media (max-width: 480px) {
+/* For screens between 1201 pixels and 1300 pixels */
+@media (min-width: 1201px) and (max-width: 1300px) {
   .archiveGrid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
+    grid-template-columns: repeat(5, 1fr); /* 5 columns */
   }
 }
 
-@media (max-width: 360px) {
+/* For screens between 1051 pixels and 1200 pixels (e.g., large desktop) */
+@media (min-width: 1051px) and (max-width: 1200px) {
   .archiveGrid {
-    grid-template-columns: 1fr; /* 1 column for mobile */
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for large desktop */
+  }
+}
+
+/* For screens between 711 pixels and 1050 pixels (e.g., desktop) */
+@media (min-width: 711px) and (max-width: 1050px) {
+  .archiveGrid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for desktop */
+  }
+}
+
+/* For screens between 481 pixels and 768 pixels (e.g., smaller screens) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .archiveGrid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
   }
 }
 
