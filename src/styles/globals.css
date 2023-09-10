@@ -80,16 +80,16 @@ a {
   height: 100vh;
   overflow: hidden;
   overscroll-behavior: none;
-}
+} */
 
-.toolPage {
+/* .toolPage {
   position: fixed;
   height: 100vh;
   overflow: hidden;
   overscroll-behavior: none;
-}
+} */
 
-.infoPage {
+/* .infoPage {
   position: fixed;
   height: 100vh;
   overflow: hidden;
@@ -101,4 +101,18 @@ a {
   width: 100vw;
   overflow: hidden;
   overscroll-behavior: none;
+} */
+
+/* canvas {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+} */
+
+/* .fixedCanvas {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
 } */
