@@ -1,0 +1,47 @@
+/* body {
+  background-color: red;
+} */
+
+.drawingArchiveImage {
+  width: 100%;
+  background-color: white;
+}
+
+.archiveGrid {
+  display: grid;
+  grid-gap: 1rem;
+  margin: 1rem;
+}
+
+/* For screens larger than tablet width (e.g., desktop) */
+@media (min-width: 768px) {
+  .archiveGrid {
+    grid-template-columns: repeat(4, 1fr); /* 6 columns for desktop */
+  }
+}
+
+/* For screens at tablet size */
+@media (max-width: 767px) {
+  .archiveGrid {
+    grid-template-columns: repeat(3, 1fr); /* 4 columns for tablet */
+  }
+}
+
+/* For mobile screens */
+@media (max-width: 480px) {
+  .archiveGrid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
+  }
+}
+
+@media (max-width: 360px) {
+  .archiveGrid {
+    grid-template-columns: 1fr; /* 1 column for mobile */
+  }
+}
+
+@media (max-width: 360px) {
+  .drawingArchiveImage {
+    min-width: 300px;
+  }
+}

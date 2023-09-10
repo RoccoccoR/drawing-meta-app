@@ -15,28 +15,39 @@ export default function Archive() {
   );
 
   return (
-    <>
+    <section className="archiveGrid">
       {publishedDrawings.map((drawing) => {
         return (
           <div key={drawing._id}>
             <div
-              style={{
-                backgroundColor: "white",
-                width: "210px",
-                height: "297px",
-              }}>
-              <Image
+            // style={{
+            //   backgroundColor: "white",
+            //   width: "210px",
+            //   height: "297px",
+            // }}
+            >
+              {/* <Image
+                className="drawingArchiveImage"
                 src={drawing.imageData}
+                layout="responsive"
                 width="210"
                 height="297"
-                alt={`Drawing by ${drawing.user}`}
+                min-width="74"
+                min-height="105"
+                alt={`Drawing by ${drawing.userId}`}
+              /> */}
+
+              <img
+                className="drawingArchiveImage"
+                src={drawing.imageData}
+                alt={`Drawing by ${drawing.userId}`}
               />
             </div>
-            <h1>{drawing._id}</h1>
-            <h1>{drawing.user}</h1>
+            {/* <h1>{drawing._id}</h1>
+            <h1>{drawing.userId}</h1> */}
           </div>
         );
       })}
-    </>
+    </section>
   );
 }
