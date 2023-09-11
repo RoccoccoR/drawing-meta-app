@@ -55,6 +55,23 @@ export default function Tool() {
   return (
     <div className="pageWrapper toolPage">
       <div className="toolContainer">
+        <div className="colorButtons">
+          <button
+            className="colorButton  black"
+            onClick={() => setCurrentColor("black")}></button>
+          <button
+            className="colorButton red"
+            onClick={() => setCurrentColor("red")}></button>
+          <button
+            className="colorButton blue"
+            onClick={() => setCurrentColor("blue")}></button>
+          <button
+            className="colorButton green"
+            onClick={() => setCurrentColor("green")}></button>
+          <button
+            className="colorButton yellow"
+            onClick={() => setCurrentColor("yellow")}></button>
+        </div>
         <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
         <section className="toolButtonsContainer">
           {saveMessage && <p>{saveMessage}</p>}
@@ -73,23 +90,6 @@ export default function Tool() {
           <button className="clearButton" onClick={clearCanvas}>
             Clear
           </button>
-          <div className="colorButtons">
-            <button
-              className="colorButton blue"
-              onClick={() => setCurrentColor("blue")}>
-              Blue
-            </button>
-            <button
-              className="colorButton red"
-              onClick={() => setCurrentColor("red")}>
-              Red
-            </button>
-            <button
-              className="colorButton yellow"
-              onClick={() => setCurrentColor("yellow")}>
-              Yellow
-            </button>
-          </div>
         </section>
       </div>
     </div>
