@@ -9,6 +9,30 @@ export default function Tool() {
   const { data: session } = useSession();
   const [currentColor, setCurrentColor] = useState("black");
 
+  // Load saved drawing data from local storage when the component mounts
+  useEffect(() => {
+    const savedDrawingData = localStorage.getItem("savedDrawing");
+    if (savedDrawingData) {
+      const { imageData } = JSON.parse(savedDrawingData);
+      const canvas = canvasRef.current;
+      const context = canvas.getContext("2d");
+      const img = new Image();
+      img.src = imageData;
+      img.onload = () => {
+        context.drawImage(img, 0, 0);
+      };
+    }
+  }, []);
+
+  const saveDrawingToLocalStorage = (imageData) => {
+    const drawingData = {
+      imageData,
+      userId: session.user.id,
+      published: false,
+    };
+    localStorage.setItem("savedDrawing", JSON.stringify(drawingData));
+  };
+
   const handleSaveClick = async () => {
     const canvas = canvasRef.current;
     const image = canvas.toDataURL();
@@ -31,13 +55,7 @@ export default function Tool() {
         console.log("Drawing saved successfully");
 
         // Save drawing data to local storage
-        const drawingData = {
-          imageData: image,
-          userId: session.user.id,
-          published: false,
-          // Add other relevant drawing data here
-        };
-        localStorage.setItem("savedDrawing", JSON.stringify(drawingData));
+        saveDrawingToLocalStorage(image);
 
         setSaveMessage("Drawing saved in the profile page"); // Set save message
 
