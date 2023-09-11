@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-export default function FreeLine({ canvasRef }) {
+export default function FreeLineOnly({ canvasRef, currentColor }) {
   const contextRef = useRef(null);
+  const pathsRef = useRef([]);
+  const [isDrawing, setIsDrawing] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -15,7 +17,6 @@ export default function FreeLine({ canvasRef }) {
       const context = canvas.getContext("2d");
       context.scale(1, 1);
       context.lineCap = "round";
-      context.strokeStyle = "black";
       context.lineWidth = 6;
       contextRef.current = context;
 
@@ -76,14 +77,43 @@ export default function FreeLine({ canvasRef }) {
     return { offsetX, offsetY };
   };
 
-  const [isDrawing, setIsDrawing] = useState(false);
+  useEffect(() => {
+    if (isDrawing) {
+      contextRef.current.strokeStyle = currentColor;
+      contextRef.current.beginPath();
+      contextRef.current.moveTo(pathsRef.current[0].x, pathsRef.current[0].y);
+      pathsRef.current.forEach((point) => {
+        contextRef.current.lineTo(point.x, point.y);
+      });
+      contextRef.current.stroke();
+      contextRef.current.closePath();
+    }
+  }, [currentColor, isDrawing]);
+
+  const handleMouseDown = ({ nativeEvent }) => {
+    if (isDrawing) {
+      finishDrawing();
+    }
+    const { offsetX, offsetY } = getPosition(canvasRef.current, nativeEvent);
+    pathsRef.current = [{ x: offsetX, y: offsetY }];
+    setIsDrawing(true);
+  };
+
+  const handleMouseMove = ({ nativeEvent }) => {
+    if (!isDrawing) {
+      return;
+    }
+    const { offsetX, offsetY } = getPosition(canvasRef.current, nativeEvent);
+    pathsRef.current = [...pathsRef.current, { x: offsetX, y: offsetY }];
+    draw({ nativeEvent });
+  };
 
   return (
     <canvas
       className="fixedCanvas"
-      onMouseDown={startDrawing}
+      onMouseDown={handleMouseDown}
       onMouseUp={finishDrawing}
-      onMouseMove={draw}
+      onMouseMove={handleMouseMove}
       onTouchStart={startDrawing}
       onTouchEnd={finishDrawing}
       onTouchMove={draw}
@@ -96,7 +126,7 @@ export default function FreeLine({ canvasRef }) {
         background: "white",
         width: "100%",
         height: "auto",
-        cursor: "crosshair", // Add a crosshair cursor to indicate drawing
+        cursor: "crosshair",
       }}></canvas>
   );
 }
