@@ -12,10 +12,45 @@ export default function Tool() {
   const handleSaveClick = async () => {
     const canvas = canvasRef.current;
     const image = canvas.toDataURL();
-    // ...
 
-    // Update the save message when the save is successful
-    setSaveMessage("Drawing saved in profile page!");
+    // Send the drawing data to your API route
+    try {
+      const response = await fetch("/api/draws", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          imageData: image,
+          userId: session.user.id,
+          published: false,
+        }),
+      });
+
+      if (response.ok) {
+        console.log("Drawing saved successfully");
+
+        // Save drawing data to local storage
+        const drawingData = {
+          imageData: image,
+          userId: session.user.id,
+          published: false,
+          // Add other relevant drawing data here
+        };
+        localStorage.setItem("savedDrawing", JSON.stringify(drawingData));
+
+        setSaveMessage("Drawing saved in the profile page"); // Set save message
+
+        // Clear the message after 2 seconds
+        setTimeout(() => {
+          setSaveMessage("");
+        }, 2000);
+      } else {
+        console.error("Failed to save drawing");
+      }
+    } catch (error) {
+      console.error("Error saving drawing:", error);
+    }
   };
 
   const handleDownloadClick = () => {
@@ -71,6 +106,9 @@ export default function Tool() {
           <button
             className="colorButton yellow"
             onClick={() => setCurrentColor("yellow")}></button>
+          <button
+            className="colorButton white"
+            onClick={() => setCurrentColor("white")}></button>
         </div>
         <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
         <section className="toolButtonsContainer">

@@ -78,7 +78,7 @@ export default function FreeLineOnly({ canvasRef, currentColor }) {
   };
 
   useEffect(() => {
-    if (isDrawing) {
+    if (isDrawing && pathsRef.current.length > 0) {
       contextRef.current.strokeStyle = currentColor;
       contextRef.current.beginPath();
       contextRef.current.moveTo(pathsRef.current[0].x, pathsRef.current[0].y);
