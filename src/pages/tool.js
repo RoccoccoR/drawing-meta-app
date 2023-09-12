@@ -5,7 +5,7 @@ import LogInBtnToSave from "../../components/LogInBtn/LogInBtnToSave";
 
 export default function Tool() {
   const canvasRef = useRef(null);
-  const [saveMessage, setSaveMessage] = useState("");
+  const [saveMessage, setSaveMessage] = useState(""); // Initialize saveMessage state
   const { data: session } = useSession();
   const [currentColor, setCurrentColor] = useState("black");
 
@@ -37,7 +37,7 @@ export default function Tool() {
     const canvas = canvasRef.current;
     const image = canvas.toDataURL();
 
-    // Send the drawing data to API route
+    // Send the drawing data to your API route
     try {
       const response = await fetch("/api/draws", {
         method: "POST",
@@ -59,6 +59,7 @@ export default function Tool() {
 
         setSaveMessage("Drawing saved in the profile page"); // Set save message
 
+        // Clear the message after 2 seconds
         setTimeout(() => {
           setSaveMessage("");
         }, 2000);
@@ -109,24 +110,31 @@ export default function Tool() {
       <div className="toolContainer">
         <div className="colorButtons">
           <button
-            className="colorButton  black"
-            onClick={() => setCurrentColor("black")}></button>
+            className="colorButton black"
+            onClick={() => setCurrentColor("black")}
+            onTouchStart={() => setCurrentColor("black")}></button>
           <button
             className="colorButton red"
-            onClick={() => setCurrentColor("red")}></button>
+            onClick={() => setCurrentColor("red")}
+            onTouchStart={() => setCurrentColor("red")}></button>
           <button
             className="colorButton blue"
-            onClick={() => setCurrentColor("blue")}></button>
+            onClick={() => setCurrentColor("blue")}
+            onTouchStart={() => setCurrentColor("blue")}></button>
           <button
             className="colorButton green"
-            onClick={() => setCurrentColor("green")}></button>
+            onClick={() => setCurrentColor("green")}
+            onTouchStart={() => setCurrentColor("green")}></button>
           <button
             className="colorButton yellow"
-            onClick={() => setCurrentColor("yellow")}></button>
+            onClick={() => setCurrentColor("yellow")}
+            onTouchStart={() => setCurrentColor("yellow")}></button>
           <button
             className="colorButton white"
-            onClick={() => setCurrentColor("white")}></button>
+            onClick={() => setCurrentColor("white")}
+            onTouchStart={() => setCurrentColor("white")}></button>
         </div>
+
         <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
         <section className="toolButtonsContainer">
           {saveMessage && <p>{saveMessage}</p>}
