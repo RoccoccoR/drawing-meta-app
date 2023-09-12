@@ -5,7 +5,7 @@ import LogInBtnToSave from "../../components/LogInBtn/LogInBtnToSave";
 
 export default function Tool() {
   const canvasRef = useRef(null);
-  const [saveMessage, setSaveMessage] = useState(""); // Initialize saveMessage state
+  const [saveMessage, setSaveMessage] = useState("");
   const { data: session } = useSession();
   const [currentColor, setCurrentColor] = useState("black");
 
@@ -37,7 +37,7 @@ export default function Tool() {
     const canvas = canvasRef.current;
     const image = canvas.toDataURL();
 
-    // Send the drawing data to your API route
+    // Send the drawing data to API route
     try {
       const response = await fetch("/api/draws", {
         method: "POST",
