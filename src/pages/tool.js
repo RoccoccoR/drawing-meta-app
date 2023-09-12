@@ -105,36 +105,50 @@ export default function Tool() {
     context.clearRect(0, 0, canvas.width, canvas.height);
   };
 
+  const mobileColors = ["black", "red", "blue", "green", "yellow", "white"];
+
+  const isTouchDevice = "ontouchstart" in window || navigator.msMaxTouchPoints;
+
+  const renderMobileColorButtons = () => {
+    if (isTouchDevice) {
+      return (
+        <div className="mobileColorButtons">
+          {mobileColors.map((color) => (
+            <button
+              key={color}
+              className={`colorButton ${color}`}
+              onClick={() => setCurrentColor(color)}></button>
+          ))}
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <div className="pageWrapper toolPage">
       <div className="toolContainer">
         <div className="colorButtons">
           <button
             className="colorButton black"
-            onClick={() => setCurrentColor("black")}
-            onTouchStart={() => setCurrentColor("black")}></button>
+            onClick={() => setCurrentColor("black")}></button>
           <button
             className="colorButton red"
-            onClick={() => setCurrentColor("red")}
-            onTouchStart={() => setCurrentColor("red")}></button>
+            onClick={() => setCurrentColor("red")}></button>
           <button
             className="colorButton blue"
-            onClick={() => setCurrentColor("blue")}
-            onTouchStart={() => setCurrentColor("blue")}></button>
+            onClick={() => setCurrentColor("blue")}></button>
           <button
             className="colorButton green"
-            onClick={() => setCurrentColor("green")}
-            onTouchStart={() => setCurrentColor("green")}></button>
+            onClick={() => setCurrentColor("green")}></button>
           <button
             className="colorButton yellow"
-            onClick={() => setCurrentColor("yellow")}
-            onTouchStart={() => setCurrentColor("yellow")}></button>
+            onClick={() => setCurrentColor("yellow")}></button>
           <button
             className="colorButton white"
-            onClick={() => setCurrentColor("white")}
-            onTouchStart={() => setCurrentColor("white")}></button>
+            onClick={() => setCurrentColor("white")}></button>
         </div>
-
+        {renderMobileColorButtons()}
         <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
         <section className="toolButtonsContainer">
           {saveMessage && <p>{saveMessage}</p>}
