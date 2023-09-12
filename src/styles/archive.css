@@ -7,11 +7,15 @@
   background-color: white;
 }
 
-.archiveGrid {
+.masonry {
+  padding: 2%;
+}
+
+/* .archiveGrid {
   display: grid;
   grid-gap: 1rem;
   margin: 1rem;
-}
+} */
 
 /* For screens larger than 1600 pixels */
 @media (min-width: 1601px) {
