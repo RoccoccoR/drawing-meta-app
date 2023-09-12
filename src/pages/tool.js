@@ -105,32 +105,12 @@ export default function Tool() {
     context.clearRect(0, 0, canvas.width, canvas.height);
   };
 
-  const mobileColors = ["black", "red", "blue", "green", "yellow", "white"];
-
-  const isTouchDevice = "ontouchstart" in window || navigator.msMaxTouchPoints;
-
-  const renderMobileColorButtons = () => {
-    if (isTouchDevice) {
-      return (
-        <div className="mobileColorButtons">
-          {mobileColors.map((color) => (
-            <button
-              key={color}
-              className={`colorButton ${color}`}
-              onClick={() => setCurrentColor(color)}></button>
-          ))}
-        </div>
-      );
-    }
-    return null;
-  };
-
   return (
     <div className="pageWrapper toolPage">
       <div className="toolContainer">
         <div className="colorButtons">
           <button
-            className="colorButton black"
+            className="colorButton  black"
             onClick={() => setCurrentColor("black")}></button>
           <button
             className="colorButton red"
@@ -148,7 +128,6 @@ export default function Tool() {
             className="colorButton white"
             onClick={() => setCurrentColor("white")}></button>
         </div>
-        {renderMobileColorButtons()}
         <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
         <section className="toolButtonsContainer">
           {saveMessage && <p>{saveMessage}</p>}
