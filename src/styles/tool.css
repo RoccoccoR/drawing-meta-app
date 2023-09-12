@@ -32,8 +32,9 @@
   display: flex;
   flex-direction: column;
   align-content: center;
-  width: 420px;
+  width: 100vw;
   margin-bottom: 50px;
+  padding: 5%;
 }
 
 .downloadButton:hover,
@@ -48,10 +49,14 @@
 }
 
 .toolButtonsContainer {
+  align-items: flex-end;
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
-  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
   gap: 1rem;
   margin-top: 1rem;
   height: 5rem;
@@ -69,9 +74,15 @@
   color: black;
   background-color: #0f0;
 }
-/* comment this */
+
+#canvasContainer {
+  width: 100%;
+  height: 70vh;
+  text-align: center;
+}
 /* canvas {
-  display: fixed;
+  width: 100vw;
+  height: 100%;
 } */
 
 .clearButton,
@@ -83,8 +94,9 @@
 .colorButtons {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
   align-items: center;
+  align-content: center;
+  justify-content: center;
   gap: 1rem;
   margin-bottom: 1rem;
 }

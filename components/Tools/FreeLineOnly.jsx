@@ -4,15 +4,24 @@ export default function FreeLineOnly({ canvasRef, currentColor }) {
   const contextRef = useRef(null);
   const pathsRef = useRef([]);
   const [isDrawing, setIsDrawing] = useState(false);
+  // window.addEventListener("resize", () => {
+  //   const width = window.innerWidth;
+  //   console.log(width);
+  // });
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
-      canvas.width = 840;
-      canvas.height = 1188;
+      // canvas.width = isWidth === "small" ? 840 : 1188;
+      // canvas.height = 1188;
 
-      canvas.style.width = "840px";
-      canvas.style.height = "1188px";
+      // canvas.style.width = "840px";
+      // canvas.style.height = "1188px";
+
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
 
       const context = canvas.getContext("2d");
       context.scale(1, 1);
@@ -20,12 +29,10 @@ export default function FreeLineOnly({ canvasRef, currentColor }) {
       context.lineWidth = 6;
       contextRef.current = context;
 
-      // Add a click event listener for drawing dots
       canvas.addEventListener("click", drawDot);
     }
 
     return () => {
-      // Remove the event listener when the component is unmounted
       canvas.removeEventListener("click", drawDot);
     };
   }, [canvasRef]);
@@ -109,24 +116,26 @@ export default function FreeLineOnly({ canvasRef, currentColor }) {
   };
 
   return (
-    <canvas
-      className="fixedCanvas"
-      onMouseDown={handleMouseDown}
-      onMouseUp={finishDrawing}
-      onMouseMove={handleMouseMove}
-      onTouchStart={startDrawing}
-      onTouchEnd={finishDrawing}
-      onTouchMove={draw}
-      ref={canvasRef}
-      style={{
-        minHeight: "297px",
-        minWidth: "210px",
-        maxWidth: "420px",
-        maxHeight: "594px",
-        background: "white",
-        width: "100%",
-        height: "auto",
-        cursor: "crosshair",
-      }}></canvas>
+    <div id="canvasContainer">
+      <canvas
+        id="canvas"
+        onMouseDown={handleMouseDown}
+        onMouseUp={finishDrawing}
+        onMouseMove={handleMouseMove}
+        onTouchStart={startDrawing}
+        onTouchEnd={finishDrawing}
+        onTouchMove={draw}
+        ref={canvasRef}
+        style={{
+          // minHeight: "297px",
+          // minWidth: "210px",
+          // maxWidth: "420px",
+          // maxHeight: "594px",
+          background: "white",
+          width: "100%",
+          height: "100%",
+          cursor: "crosshair",
+        }}></canvas>
+    </div>
   );
 }
