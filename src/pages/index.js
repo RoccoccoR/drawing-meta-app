@@ -16,6 +16,9 @@ export default function Home() {
     <main className="main-container rootHomepage">
       <div className="background-container">
         <IntroText className="introText" />
+        {/* <img src="/qr-code.png" alt="QR-CODE" className="qr-code" /> */}
+
+        {/* qr code to fit in the middle of the page */}
         <LogInBtn onClick={goToSheetPage} />
       </div>
       <PathTracker />
