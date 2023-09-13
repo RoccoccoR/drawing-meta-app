@@ -24,7 +24,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   width: 100vw;
 }
 
@@ -37,6 +36,25 @@
   padding-left: 5%;
   padding-right: 5%;
   min-width: 350px;
+  /* position: fixed;
+  right: calc((100vw +50%));
+  top: calc((100vw - 70%)); */
+}
+
+@media (pointer: coarse) {
+  .toolContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 100vw;
+    margin-bottom: 50px;
+    padding-left: 5%;
+    padding-right: 5%;
+    min-width: 350px;
+    position: fixed;
+    right: calc((100vw -50%) / 2); /* Center horizontally */
+    top: calc((100vh - 92%) / 2); /* Center vertically */
+  }
 }
 
 .downloadButton:hover,
@@ -101,6 +119,7 @@
   align-content: center;
   justify-content: center;
   gap: 1rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   min-width: 350px;
 }

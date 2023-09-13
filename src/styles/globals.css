@@ -10,6 +10,11 @@
   margin: 0;
 }
 
+html,
+body {
+  overscroll-behavior-y: contain;
+}
+
 :root {
   background-color: #0f0;
   font-family: Arial, Helvetica, sans-serif;

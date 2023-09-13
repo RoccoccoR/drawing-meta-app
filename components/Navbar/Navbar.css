@@ -8,6 +8,24 @@
   justify-content: center;
 }
 
+@media (pointer: coarse) {
+  .menubarItem {
+    font-size: 1rem;
+    padding: 1rem;
+    /* right: calc((100vw -50%) / 2);
+    top: calc((100vh - 92%) / 2); */
+  }
+}
+
+@media (pointer: coarse) {
+  .menuContainer {
+    position: fixed;
+    width: 100vw;
+    /* right: calc((100vw -50%) / 2);
+    top: calc((100vh - 92%) / 2); */
+  }
+}
+
 .menuContainer {
   display: flex;
   flex-direction: row;
