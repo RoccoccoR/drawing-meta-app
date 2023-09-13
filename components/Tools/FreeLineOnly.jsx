@@ -97,6 +97,7 @@ export default function FreeLineTest({ canvasRef, currentColor }) {
           width: "100%",
           height: "100%",
           cursor: "crosshair",
+          touchAction: "none",
         }}></canvas>
     </div>
   );
