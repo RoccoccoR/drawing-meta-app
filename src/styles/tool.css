@@ -31,6 +31,7 @@
   display: flex;
   flex-direction: column;
   align-content: center;
+
   margin-bottom: 50px;
   padding-left: 25%;
   padding-right: 25%;
@@ -115,7 +116,7 @@
 @media (max-width: 768px) {
   #canvasContainer {
     width: 100%;
-    height: 55vh;
+    height: 50vh;
   }
 }
 
