@@ -11,10 +11,6 @@ export default function Tool() {
 
   // Load saved drawing data from local storage when the component mounts
   useEffect(() => {
-    if (window.screen && window.screen.orientation) {
-      window.screen.orientation.lock("portrait");
-    }
-
     const savedDrawingData = localStorage.getItem("savedDrawing");
     if (savedDrawingData) {
       const { imageData } = JSON.parse(savedDrawingData);
