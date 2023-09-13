@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import LogInBtnToSave from "../../components/LogInBtn/LogInBtnToSave";
 import FreeLineOnly from "../../components/Tools/FreeLineOnly";
 
-export default function Toool() {
+export default function Tooooool() {
   const canvasRef = useRef(null);
   const [saveMessage, setSaveMessage] = useState("");
   const { data: session } = useSession();
