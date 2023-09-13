@@ -10,16 +10,13 @@
   margin: 0;
 }
 
-@media screen and (max-width: 767px) {
-  body {
-    orientation: portrait;
-    transform: rotate(0deg);
-    transform-origin: center;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-  }
+/* @media screen and (max-width: 767px) { */
+body {
+  orientation: portrait;
+  transform: rotate(0deg);
+  transform-origin: center;
 }
+/* } */
 
 html,
 body {
