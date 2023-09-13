@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
-import FreeLineTest from "../../components/Tools/FreeLineTest";
 import { useSession } from "next-auth/react";
 import LogInBtnToSave from "../../components/LogInBtn/LogInBtnToSave";
+import FreeLineOnlyTest from "../../components/Tools/FreeLineTest";
 
 export default function Tool() {
   const canvasRef = useRef(null);
@@ -128,7 +128,7 @@ export default function Tool() {
             className="colorButton white"
             onClick={() => setCurrentColor("white")}></button>
         </div>
-        <FreeLineTest canvasRef={canvasRef} currentColor={currentColor} />
+        <FreeLineOnlyTest canvasRef={canvasRef} currentColor={currentColor} />
         <section className="toolButtonsContainer">
           {saveMessage && <p>{saveMessage}</p>}
           {session ? (
