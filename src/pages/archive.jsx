@@ -8,7 +8,10 @@ export default function Archive() {
   const { data, error, isLoading } = useSWR("/api/draws", fetcher);
 
   if (isLoading) return <div className="centeredText">Loading...</div>;
-  if (error) return <div className="centeredText">No drawings here!</div>;
+  if (error)
+    return (
+      <div className="centeredText">No drawings here, try to refresh!</div>
+    );
 
   // Filter the data to include only drawings with published: true
   const publishedDrawings = data.filter(
