@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import LogInBtnToSave from "../../components/LogInBtn/LogInBtnToSave";
-import FreeLineOnlyTest from "../../components/Tools/FreeLineTest";
+import FreeLineOnly from "../../components/Tools/FreeLineOnly";
 
 export default function Toool() {
   const canvasRef = useRef(null);
@@ -128,7 +128,7 @@ export default function Toool() {
             className="colorButton white"
             onClick={() => setCurrentColor("white")}></button>
         </div>
-        <FreeLineOnlyTest canvasRef={canvasRef} currentColor={currentColor} />
+        <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
         <section className="toolButtonsContainer">
           {saveMessage && <p>{saveMessage}</p>}
           {session ? (
