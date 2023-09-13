@@ -17,8 +17,11 @@ export default function Profile() {
   const router = useRouter();
   const { push } = router;
 
-  if (isLoading) return <div>loading...</div>;
-  if (error) return <div>no drawings here!</div>;
+  if (isLoading) return <div className="centeredText">Loading...</div>;
+  if (error)
+    return (
+      <div className="centeredText">No drawings here, try to refresh!</div>
+    );
 
   async function deleteDrawing(id) {
     try {
@@ -33,18 +36,46 @@ export default function Profile() {
   }
 
   async function downloadDrawing(drawing) {
-    // complete this function so that it downloads the drawing as a JPEG
-    // Hint: you can use the code from the tool page to download the drawing as a JPEG
-    // Hint: you can use the code from the archive page to get the drawing data
-
     try {
-      await fetch(`/api/draws/${id}`, {
+      const response = await fetch(`/api/draws/${drawing._id}`, {
         method: "GET",
       });
+      console.log(response);
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
 
-      mutate(`/api/draws/${session?.user.id}`);
+        // Create a new canvas to draw the image
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+        const img = new Image();
+
+        img.onload = () => {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          context.drawImage(img, 0, 0);
+
+          // Convert the canvas content to a data URL in JPEG format
+          canvas.toBlob((blob) => {
+            const url = URL.createObjectURL(blob);
+
+            // Create a download link for the image
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = `drawing_${drawing._id}.jpg`;
+            link.click();
+
+            // Clean up the created URLs
+            URL.revokeObjectURL(url);
+          }, "image/jpeg");
+        };
+
+        img.src = data.imageData; // Assuming the API response contains an 'imageData' field with the image URL
+      } else {
+        console.error("Failed to download drawing");
+      }
     } catch (error) {
-      console.error("Error download drawing:", error);
+      console.error("Error downloading drawing:", error);
     }
   }
 
@@ -123,12 +154,12 @@ export default function Profile() {
                   }}>
                   Delete
                 </button>
-                <button
+                {/* <button
                   className="downloadButton"
                   type="button"
                   onClick={() => downloadDrawing(drawing)}>
                   Download
-                </button>
+                </button> */}
               </div>
             </div>
           );
