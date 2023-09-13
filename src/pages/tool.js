@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import FreeLineOnly from "../../components/Tools/FreeLineOnly";
 import { useSession } from "next-auth/react";
 import LogInBtnToSave from "../../components/LogInBtn/LogInBtnToSave";
+import FreeLineTest from "../../components/Tools/FreeLineTest";
 
 export default function Tool() {
   const canvasRef = useRef(null);
