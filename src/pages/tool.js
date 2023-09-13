@@ -1,154 +1,104 @@
-import React, { useRef, useState, useEffect } from "react";
-import FreeLineOnly from "../../components/Tools/FreeLineOnly";
-import { useSession } from "next-auth/react";
-import LogInBtnToSave from "../../components/LogInBtn/LogInBtnToSave";
-import FreeLineTest from "../../components/Tools/FreeLineTest";
+import React, { useEffect, useRef, useState } from "react";
 
-export default function Tool() {
-  const canvasRef = useRef(null);
-  const [saveMessage, setSaveMessage] = useState("");
-  const { data: session } = useSession();
-  const [currentColor, setCurrentColor] = useState("black");
+export default function FreeLineTest({ canvasRef, currentColor }) {
+  const contextRef = useRef(null);
+  const pathsRef = useRef([]);
+  const [isDrawing, setIsDrawing] = useState(false);
 
-  // Load saved drawing data from local storage when the component mounts
   useEffect(() => {
-    const savedDrawingData = localStorage.getItem("savedDrawing");
-    if (savedDrawingData) {
-      const { imageData } = JSON.parse(savedDrawingData);
-      const canvas = canvasRef.current;
+    const canvas = canvasRef.current;
+    if (canvas) {
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+
       const context = canvas.getContext("2d");
-      const img = new Image();
-      img.src = imageData;
-      img.onload = () => {
-        context.drawImage(img, 0, 0);
-      };
-    }
-  }, []);
+      context.scale(1, 1);
+      context.lineCap = "round";
+      context.lineWidth = 6;
+      contextRef.current = context;
 
-  const saveDrawingToLocalStorage = (imageData) => {
-    const drawingData = {
-      imageData,
-      userId: session.user.id,
-      published: false,
+      canvas.addEventListener("mousedown", startDrawing);
+      canvas.addEventListener("mouseup", finishDrawing);
+      canvas.addEventListener("mousemove", draw);
+      canvas.addEventListener("touchstart", startDrawing);
+      canvas.addEventListener("touchend", finishDrawing);
+      canvas.addEventListener("touchmove", draw);
+    }
+
+    return () => {
+      canvas.removeEventListener("mousedown", startDrawing);
+      canvas.removeEventListener("mouseup", finishDrawing);
+      canvas.removeEventListener("mousemove", draw);
+      canvas.removeEventListener("touchstart", startDrawing);
+      canvas.removeEventListener("touchend", finishDrawing);
+      canvas.removeEventListener("touchmove", draw);
     };
-    localStorage.setItem("savedDrawing", JSON.stringify(drawingData));
+  }, [canvasRef]);
+
+  const startDrawing = (event) => {
+    const { offsetX, offsetY } = getPosition(canvasRef.current, event);
+    contextRef.current.strokeStyle = currentColor;
+    contextRef.current.beginPath();
+    contextRef.current.moveTo(offsetX, offsetY);
+    setIsDrawing(true);
+    pathsRef.current.push({ x: offsetX, y: offsetY });
   };
 
-  const handleSaveClick = async () => {
-    const canvas = canvasRef.current;
-    const image = canvas.toDataURL();
+  const finishDrawing = () => {
+    contextRef.current.closePath();
+    setIsDrawing(false);
+    pathsRef.current = [];
+  };
 
-    // Send the drawing data to API route
-    try {
-      const response = await fetch("/api/draws", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          imageData: image,
-          userId: session.user.id,
-          published: false,
-        }),
-      });
-
-      if (response.ok) {
-        console.log("Drawing saved successfully");
-
-        // Save drawing data to local storage
-        saveDrawingToLocalStorage(image);
-
-        setSaveMessage("Drawing saved in the profile page"); // Set save message
-
-        // Clear the message after 2 seconds
-        setTimeout(() => {
-          setSaveMessage("");
-        }, 2000);
-      } else {
-        console.error("Failed to save drawing");
-      }
-    } catch (error) {
-      console.error("Error saving drawing:", error);
+  const draw = (event) => {
+    if (!isDrawing) {
+      return;
     }
+    const { offsetX, offsetY } = getPosition(canvasRef.current, event);
+    contextRef.current.lineTo(offsetX, offsetY);
+    contextRef.current.stroke();
+    pathsRef.current.push({ x: offsetX, y: offsetY });
   };
 
-  const handleDownloadClick = () => {
-    const canvas = canvasRef.current;
-    const newCanvas = document.createElement("canvas");
-    newCanvas.width = canvas.width;
-    newCanvas.height = canvas.height;
+  const getPosition = (canvas, event) => {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    let clientX, clientY;
 
-    const newContext = newCanvas.getContext("2d");
+    if (event.type.startsWith("touch")) {
+      clientX = event.touches[0].clientX;
+      clientY = event.touches[0].clientY;
+    } else {
+      clientX = event.clientX;
+      clientY = event.clientY;
+    }
 
-    // Fill the new canvas with a white background
-    newContext.fillStyle = "white";
-    newContext.fillRect(0, 0, newCanvas.width, newCanvas.height);
-
-    // Draw the existing canvas content onto the new canvas
-    newContext.drawImage(canvas, 0, 0);
-
-    // Create a data URL for the new canvas (JPEG format)
-    const image = newCanvas.toDataURL("image/jpeg");
-    console.log("Downloaded image data:", image); // Log the downloaded image data
-
-    // Create a download link for the image
-    const link = document.createElement("a");
-    link.href = image;
-    link.download = "canvas_image.jpg";
-    link.click();
-
-    console.log("Download button clicked", image);
-  };
-
-  const clearCanvas = () => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    const offsetX = (clientX - rect.left) * scaleX;
+    const offsetY = (clientY - rect.top) * scaleY;
+    return { offsetX, offsetY };
   };
 
   return (
-    <div className="pageWrapper toolPage">
-      <div className="toolContainer">
-        <div className="colorButtons">
-          <button
-            className="colorButton  black"
-            onClick={() => setCurrentColor("black")}></button>
-          <button
-            className="colorButton red"
-            onClick={() => setCurrentColor("red")}></button>
-          <button
-            className="colorButton blue"
-            onClick={() => setCurrentColor("blue")}></button>
-          <button
-            className="colorButton green"
-            onClick={() => setCurrentColor("green")}></button>
-          <button
-            className="colorButton yellow"
-            onClick={() => setCurrentColor("yellow")}></button>
-          <button
-            className="colorButton white"
-            onClick={() => setCurrentColor("white")}></button>
-        </div>
-        <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
-        <section className="toolButtonsContainer">
-          {saveMessage && <p>{saveMessage}</p>}
-          {session ? (
-            <>
-              <button className="saveButton" onClick={handleSaveClick}>
-                Save
-              </button>
-            </>
-          ) : (
-            <LogInBtnToSave />
-          )}
-          <button className="downloadButton" onClick={handleDownloadClick}>
-            Download
-          </button>
-          <button className="clearButton" onClick={clearCanvas}>
-            Clear
-          </button>
-        </section>
-      </div>
+    <div id="canvasContainer">
+      <canvas
+        id="canvas"
+        onMouseDown={startDrawing}
+        onMouseUp={finishDrawing}
+        onMouseMove={draw}
+        onTouchStart={startDrawing}
+        onTouchEnd={finishDrawing}
+        onTouchMove={draw}
+        ref={canvasRef}
+        style={{
+          background: "white",
+          width: "100%",
+          height: "100%",
+          cursor: "crosshair",
+          touchAction: "none",
+        }}></canvas>
     </div>
   );
 }
