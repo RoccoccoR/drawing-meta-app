@@ -31,11 +31,17 @@
   display: flex;
   flex-direction: column;
   align-content: center;
-
   margin-bottom: 50px;
   padding-left: 25%;
   padding-right: 25%;
   min-width: 350px;
+}
+
+/* Apply styles for landscape orientation on all touch devices */
+@media (pointer: coarse) and (orientation: landscape) {
+  .toolContainer {
+    display: none;
+  }
 }
 
 @media (pointer: coarse) {
