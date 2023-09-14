@@ -11,7 +11,7 @@
 }
 
 @media only screen and (orientation: portrait) {
-  .pageWrapper {
+  body {
     display: block;
   }
 }
