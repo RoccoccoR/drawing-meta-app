@@ -46,6 +46,21 @@ export default function Tool() {
     }
   }, [currentOrientation]);
 
+  // Load saved drawing data from local storage when the component mounts
+  useEffect(() => {
+    const savedDrawingData = localStorage.getItem("savedDrawing");
+    if (savedDrawingData) {
+      const { imageData } = JSON.parse(savedDrawingData);
+      const canvas = canvasRef.current;
+      const context = canvas.getContext("2d");
+      const img = new Image();
+      img.src = imageData;
+      img.onload = () => {
+        context.drawImage(img, 0, 0);
+      };
+    }
+  }, []);
+
   const saveDrawingToLocalStorage = (imageData) => {
     const drawingData = {
       imageData,
@@ -129,47 +144,52 @@ export default function Tool() {
 
   return (
     <div className="pageWrapper toolPage">
-      <div className="toolContainer">
-        <div className="colorButtons">
-          <button
-            className="colorButton  black"
-            onClick={() => setCurrentColor("black")}></button>
-          <button
-            className="colorButton red"
-            onClick={() => setCurrentColor("red")}></button>
-          <button
-            className="colorButton blue"
-            onClick={() => setCurrentColor("blue")}></button>
-          <button
-            className="colorButton green"
-            onClick={() => setCurrentColor("green")}></button>
-          <button
-            className="colorButton yellow"
-            onClick={() => setCurrentColor("yellow")}></button>
-          <button
-            className="colorButton white"
-            onClick={() => setCurrentColor("white")}></button>
+      {currentOrientation === "landscape-primary" &&
+      ("ontouchstart" in window || navigator.maxTouchPoints > 0) ? (
+        <div>Please go back to portrait view</div>
+      ) : (
+        <div className="toolContainer">
+          <div className="colorButtons">
+            <button
+              className="colorButton  black"
+              onClick={() => setCurrentColor("black")}></button>
+            <button
+              className="colorButton red"
+              onClick={() => setCurrentColor("red")}></button>
+            <button
+              className="colorButton blue"
+              onClick={() => setCurrentColor("blue")}></button>
+            <button
+              className="colorButton green"
+              onClick={() => setCurrentColor("green")}></button>
+            <button
+              className="colorButton yellow"
+              onClick={() => setCurrentColor("yellow")}></button>
+            <button
+              className="colorButton white"
+              onClick={() => setCurrentColor("white")}></button>
+          </div>
+          <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
+          <section className="toolButtonsContainer">
+            {saveMessage && <p>{saveMessage}</p>}
+            {session ? (
+              <>
+                <button className="saveButton" onClick={handleSaveClick}>
+                  Save
+                </button>
+              </>
+            ) : (
+              <LogInBtnToSave />
+            )}
+            <button className="downloadButton" onClick={handleDownloadClick}>
+              Download
+            </button>
+            <button className="clearButton" onClick={clearCanvas}>
+              Clear
+            </button>
+          </section>
         </div>
-        <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
-        <section className="toolButtonsContainer">
-          {saveMessage && <p>{saveMessage}</p>}
-          {session ? (
-            <>
-              <button className="saveButton" onClick={handleSaveClick}>
-                Save
-              </button>
-            </>
-          ) : (
-            <LogInBtnToSave />
-          )}
-          <button className="downloadButton" onClick={handleDownloadClick}>
-            Download
-          </button>
-          <button className="clearButton" onClick={clearCanvas}>
-            Clear
-          </button>
-        </section>
-      </div>
+      )}
     </div>
   );
 }
