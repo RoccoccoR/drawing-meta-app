@@ -24,6 +24,29 @@ export default function Tool() {
     }
   }, []);
 
+  // Function to lock the screen orientation to portrait mode
+  const lockScreenOrientation = async () => {
+    try {
+      if ("screen" in window && "orientation" in window.screen) {
+        if ("ontouchstart" in window) {
+          await window.screen.orientation.lock("portrait-primary");
+          console.log("Screen orientation locked successfully.");
+        } else {
+          console.warn("This device does not support touch events.");
+        }
+      } else {
+        console.warn("Screen orientation API is not supported on this device.");
+      }
+    } catch (error) {
+      console.error("Failed to lock screen orientation:", error);
+    }
+  };
+
+  // Lock the screen orientation when the component mounts
+  useEffect(() => {
+    lockScreenOrientation();
+  }, []);
+
   const saveDrawingToLocalStorage = (imageData) => {
     const drawingData = {
       imageData,
