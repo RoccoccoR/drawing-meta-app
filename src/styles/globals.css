@@ -10,10 +10,7 @@
   margin: 0;
 }
 
-@media only screen and (orientation: portrait) {
-  body {
-    display: block;
-  }
+@media screen and (orientation: portrait) {
 }
 
 html,
