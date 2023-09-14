@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import { isMobile, isBrowser } from "react-device-detect"; // Import isMobile and isBrowser
 import LogInBtnToSave from "../../components/LogInBtn/LogInBtnToSave";
 import FreeLineOnly from "../../components/Tools/FreeLineOnly";
 
@@ -8,9 +9,11 @@ export default function Tool() {
   const [saveMessage, setSaveMessage] = useState("");
   const { data: session } = useSession();
   const [currentColor, setCurrentColor] = useState("black");
+  const [isLandscape, setIsLandscape] = useState(false); // Define isLandscape variable
 
   // Load saved drawing data from local storage when the component mounts
   useEffect(() => {
+    // Load saved drawing data from local storage when the component mounts
     const savedDrawingData = localStorage.getItem("savedDrawing");
     if (savedDrawingData) {
       const { imageData } = JSON.parse(savedDrawingData);
@@ -22,6 +25,22 @@ export default function Tool() {
         context.drawImage(img, 0, 0);
       };
     }
+
+    // Check for landscape orientation on the client side
+    const checkOrientation = () => {
+      setIsLandscape(window.matchMedia("(orientation: landscape)").matches);
+    };
+
+    // Add an event listener to re-check orientation when the window is resized
+    window.addEventListener("resize", checkOrientation);
+
+    // Initial check
+    checkOrientation();
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", checkOrientation);
+    };
   }, []);
 
   const saveDrawingToLocalStorage = (imageData) => {
@@ -106,48 +125,103 @@ export default function Tool() {
   };
 
   return (
-    <div className="pageWrapper toolPage">
-      <div className="toolContainer">
-        <div className="colorButtons">
-          <button
-            className="colorButton  black"
-            onClick={() => setCurrentColor("black")}></button>
-          <button
-            className="colorButton red"
-            onClick={() => setCurrentColor("red")}></button>
-          <button
-            className="colorButton blue"
-            onClick={() => setCurrentColor("blue")}></button>
-          <button
-            className="colorButton green"
-            onClick={() => setCurrentColor("green")}></button>
-          <button
-            className="colorButton yellow"
-            onClick={() => setCurrentColor("yellow")}></button>
-          <button
-            className="colorButton white"
-            onClick={() => setCurrentColor("white")}></button>
-        </div>
-        <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
-        <section className="toolButtonsContainer">
-          {saveMessage && <p>{saveMessage}</p>}
-          {session ? (
-            <>
-              <button className="saveButton" onClick={handleSaveClick}>
-                Save
+    <div>
+      {/* ____________________if is isBrowser_________________________ */}
+
+      {isBrowser && (
+        <div className="pageWrapper toolPage">
+          <div className="toolContainer">
+            <div className="colorButtons">
+              <button
+                className="colorButton  black"
+                onClick={() => setCurrentColor("black")}></button>
+              <button
+                className="colorButton red"
+                onClick={() => setCurrentColor("red")}></button>
+              <button
+                className="colorButton blue"
+                onClick={() => setCurrentColor("blue")}></button>
+              <button
+                className="colorButton green"
+                onClick={() => setCurrentColor("green")}></button>
+              <button
+                className="colorButton yellow"
+                onClick={() => setCurrentColor("yellow")}></button>
+              <button
+                className="colorButton white"
+                onClick={() => setCurrentColor("white")}></button>
+            </div>
+            <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
+            <section className="toolButtonsContainer">
+              {saveMessage && <p>{saveMessage}</p>}
+              {session ? (
+                <>
+                  <button className="saveButton" onClick={handleSaveClick}>
+                    Save
+                  </button>
+                </>
+              ) : (
+                <LogInBtnToSave />
+              )}
+              <button className="downloadButton" onClick={handleDownloadClick}>
+                Download
               </button>
-            </>
-          ) : (
-            <LogInBtnToSave />
-          )}
-          <button className="downloadButton" onClick={handleDownloadClick}>
-            Download
-          </button>
-          <button className="clearButton" onClick={clearCanvas}>
-            Clear
-          </button>
-        </section>
-      </div>
+              <button className="clearButton" onClick={clearCanvas}>
+                Clear
+              </button>
+            </section>
+          </div>
+        </div>
+      )}
+      {isMobile && !isLandscape && (
+        <div className="pageWrapper toolPage">
+          <div className="toolContainer">
+            <div className="colorButtons">
+              <button
+                className="colorButton  black"
+                onClick={() => setCurrentColor("black")}></button>
+              <button
+                className="colorButton red"
+                onClick={() => setCurrentColor("red")}></button>
+              <button
+                className="colorButton blue"
+                onClick={() => setCurrentColor("blue")}></button>
+              <button
+                className="colorButton green"
+                onClick={() => setCurrentColor("green")}></button>
+              <button
+                className="colorButton yellow"
+                onClick={() => setCurrentColor("yellow")}></button>
+              <button
+                className="colorButton white"
+                onClick={() => setCurrentColor("white")}></button>
+            </div>
+            <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
+            <section className="toolButtonsContainer">
+              {saveMessage && <p>{saveMessage}</p>}
+              {session ? (
+                <>
+                  <button className="saveButton" onClick={handleSaveClick}>
+                    Save
+                  </button>
+                </>
+              ) : (
+                <LogInBtnToSave />
+              )}
+              <button className="downloadButton" onClick={handleDownloadClick}>
+                Download
+              </button>
+              <button className="clearButton" onClick={clearCanvas}>
+                Clear
+              </button>
+            </section>
+          </div>
+        </div>
+      )}
+      {isMobile && isLandscape && (
+        <p className="centeredText">Please rotate your device :)</p>
+      )}
+      {/* {!isMobile && !isLandscape && <p>This is not a mobile device</p>} */}
     </div>
   );
 }
