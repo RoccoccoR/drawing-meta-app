@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { isMobile } from "react-device-detect";
+import { isMobile, isBrowser } from "react-device-detect";
 
 export default function Info() {
   const [isLandscape, setIsLandscape] = useState(false);
@@ -24,8 +24,10 @@ export default function Info() {
 
   return (
     <div>
-      {isMobile && isLandscape && <h1>Please rotate your device</h1>}
-      {!isMobile && <h1>Test</h1>}
+      {isBrowser && <p>This is the browser</p>}
+      {isMobile && isLandscape && <p>Please rotate your device</p>}
+      {isMobile && !isLandscape && <p>Mobile orientation portrait</p>}
+      {!isMobile && !isLandscape && <p>Test</p>}
     </div>
   );
 }
