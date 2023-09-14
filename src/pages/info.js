@@ -6,7 +6,7 @@ export default function Info() {
 
   return (
     <div>
-      {isMobile && isLandscape && <h1>Please rotate your device</h1>}
+      {isMobile && isLandscape && <h1>Please rotate your devic :)</h1>}
       {!isMobile && <h1>Test</h1>}
     </div>
   );
