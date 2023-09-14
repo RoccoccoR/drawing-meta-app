@@ -37,12 +37,6 @@
   min-width: 350px;
 }
 
-@media (pointer: coarse) and (orientation: landscape) {
-  .toolContainer {
-    display: none;
-  }
-}
-
 @media (pointer: coarse) {
   .toolContainer {
     display: flex;
