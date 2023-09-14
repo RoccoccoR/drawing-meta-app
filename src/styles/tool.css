@@ -37,7 +37,6 @@
   min-width: 350px;
 }
 
-/* Apply styles for landscape orientation on all touch devices */
 @media (pointer: coarse) and (orientation: landscape) {
   .toolContainer {
     display: none;
