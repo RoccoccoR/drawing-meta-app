@@ -13,14 +13,14 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       // Lock the screen orientation to portrait
       async function lockScreenOrientation() {
         try {
-          await screen.orientation.lock("portrait");
+          await screen.orientation.lock("portrait-primary");
           console.log("Screen orientation locked to portrait.");
         } catch (error) {
           console.error("Failed to lock screen orientation:", error);
         }
       }
 
-      lockScreenOrientation(); // Call the function to lock the orientation when the component mounts
+      lockScreenOrientation();
     } else {
       console.log(
         "Screen orientation locking is not supported on this device/browser."
