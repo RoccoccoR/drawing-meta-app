@@ -8,43 +8,28 @@ export default function Tool() {
   const [saveMessage, setSaveMessage] = useState("");
   const { data: session } = useSession();
   const [currentColor, setCurrentColor] = useState("black");
+  const [currentOrientation, setCurrentOrientation] = useState(null);
 
-  // Load saved drawing data from local storage when the component mounts
-  useEffect(() => {
-    const savedDrawingData = localStorage.getItem("savedDrawing");
-    if (savedDrawingData) {
-      const { imageData } = JSON.parse(savedDrawingData);
-      const canvas = canvasRef.current;
-      const context = canvas.getContext("2d");
-      const img = new Image();
-      img.src = imageData;
-      img.onload = () => {
-        context.drawImage(img, 0, 0);
-      };
-    }
-  }, []);
-
-  // Function to lock the screen orientation to portrait mode
-  const lockScreenOrientation = async () => {
-    try {
-      if ("screen" in window && "orientation" in window.screen) {
-        if ("ontouchstart" in window) {
-          await window.screen.orientation.lock("portrait-primary");
-          console.log("Screen orientation locked successfully.");
-        } else {
-          console.warn("This device does not support touch events.");
-        }
-      } else {
-        console.warn("Screen orientation API is not supported on this device.");
-      }
-    } catch (error) {
-      console.error("Failed to lock screen orientation:", error);
-    }
+  const handleOrientationChange = () => {
+    setCurrentOrientation(window.screen.orientation.type);
   };
 
-  // Lock the screen orientation when the component mounts
   useEffect(() => {
-    lockScreenOrientation();
+    // Check if window and screen objects are available (client-side)
+    if (typeof window !== "undefined" && window.screen) {
+      setCurrentOrientation(window.screen.orientation.type);
+
+      // Add event listener for orientation change
+      window.addEventListener("orientationchange", handleOrientationChange);
+
+      // Clean up by removing the event listener when the component unmounts
+      return () => {
+        window.removeEventListener(
+          "orientationchange",
+          handleOrientationChange
+        );
+      };
+    }
   }, []);
 
   const saveDrawingToLocalStorage = (imageData) => {
@@ -131,6 +116,8 @@ export default function Tool() {
   return (
     <div className="pageWrapper toolPage">
       <div className="toolContainer">
+        {currentOrientation && <p>Current Orientation: {currentOrientation}</p>}
+
         <div className="colorButtons">
           <button
             className="colorButton  black"
