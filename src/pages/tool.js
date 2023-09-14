@@ -9,6 +9,16 @@ export default function Tool() {
   const { data: session } = useSession();
   const [currentColor, setCurrentColor] = useState("black");
 
+  // Add state to store the current orientation
+  const [currentOrientation, setCurrentOrientation] = useState(
+    screen.orientation.type
+  );
+
+  // Function to handle orientation change
+  const handleOrientationChange = () => {
+    setCurrentOrientation(screen.orientation.type);
+  };
+
   // Load saved drawing data from local storage when the component mounts
   useEffect(() => {
     const savedDrawingData = localStorage.getItem("savedDrawing");
@@ -22,29 +32,14 @@ export default function Tool() {
         context.drawImage(img, 0, 0);
       };
     }
-  }, []);
 
-  // Function to lock the screen orientation to portrait mode
-  const lockScreenOrientation = async () => {
-    try {
-      if ("screen" in window && "orientation" in window.screen) {
-        if ("ontouchstart" in window) {
-          await window.screen.orientation.lock("portrait-primary");
-          console.log("Screen orientation locked successfully.");
-        } else {
-          console.warn("This device does not support touch events.");
-        }
-      } else {
-        console.warn("Screen orientation API is not supported on this device.");
-      }
-    } catch (error) {
-      console.error("Failed to lock screen orientation:", error);
-    }
-  };
+    // Add an event listener for orientation changes
+    screen.addEventListener("orientationchange", handleOrientationChange);
 
-  // Lock the screen orientation when the component mounts
-  useEffect(() => {
-    lockScreenOrientation();
+    // Cleanup by removing the event listener when the component unmounts
+    return () => {
+      screen.removeEventListener("orientationchange", handleOrientationChange);
+    };
   }, []);
 
   const saveDrawingToLocalStorage = (imageData) => {
