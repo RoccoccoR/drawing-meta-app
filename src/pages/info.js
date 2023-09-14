@@ -3,24 +3,46 @@ import { useSession } from "next-auth/react";
 import LogInBtnToSave from "../../components/LogInBtn/LogInBtnToSave";
 import FreeLineOnly from "../../components/Tools/FreeLineOnly";
 
-export default function Tooooool() {
+export default function Tool() {
   const canvasRef = useRef(null);
   const [saveMessage, setSaveMessage] = useState("");
   const { data: session } = useSession();
   const [currentColor, setCurrentColor] = useState("black");
+  const [currentOrientation, setCurrentOrientation] = useState(null);
 
-  // Load saved drawing data from local storage when the component mounts
+  const handleOrientationChange = () => {
+    setCurrentOrientation(screen.orientation.type);
+  };
+
   useEffect(() => {
-    const savedDrawingData = localStorage.getItem("savedDrawing");
-    if (savedDrawingData) {
-      const { imageData } = JSON.parse(savedDrawingData);
-      const canvas = canvasRef.current;
-      const context = canvas.getContext("2d");
-      const img = new Image();
-      img.src = imageData;
-      img.onload = () => {
-        context.drawImage(img, 0, 0);
+    // Check if window and screen objects are available (client-side)
+    if (typeof window !== "undefined" && window.screen) {
+      setCurrentOrientation(window.screen.orientation.type);
+
+      // Add event listener for orientation change
+      window.addEventListener("orientationchange", handleOrientationChange);
+
+      // Clean up by removing the event listener when the component unmounts
+      return () => {
+        window.removeEventListener(
+          "orientationchange",
+          handleOrientationChange
+        );
       };
+    }
+  }, []);
+
+  // Lock the screen orientation to "portrait-primary" on component load
+  useEffect(() => {
+    if (typeof screen !== "undefined" && screen.orientation) {
+      screen.orientation
+        .lock("portrait-primary")
+        .then(() => {
+          console.log("Screen orientation locked to portrait-primary");
+        })
+        .catch((error) => {
+          console.error("Error locking screen orientation:", error);
+        });
     }
   }, []);
 
@@ -108,6 +130,8 @@ export default function Tooooool() {
   return (
     <div className="pageWrapper toolPage">
       <div className="toolContainer">
+        {currentOrientation && <p>Current Orientation: {currentOrientation}</p>}
+
         <div className="colorButtons">
           <button
             className="colorButton  black"

@@ -8,26 +8,18 @@ export default function Tool() {
   const [saveMessage, setSaveMessage] = useState("");
   const { data: session } = useSession();
   const [currentColor, setCurrentColor] = useState("black");
-  const [currentOrientation, setCurrentOrientation] = useState(null);
 
-  const handleOrientationChange = () => {
-    setCurrentOrientation(window.screen.orientation.type);
-  };
-
+  // Load saved drawing data from local storage when the component mounts
   useEffect(() => {
-    // Check if window and screen objects are available (client-side)
-    if (typeof window !== "undefined" && window.screen) {
-      setCurrentOrientation(window.screen.orientation.type);
-
-      // Add event listener for orientation change
-      window.addEventListener("orientationchange", handleOrientationChange);
-
-      // Clean up by removing the event listener when the component unmounts
-      return () => {
-        window.removeEventListener(
-          "orientationchange",
-          handleOrientationChange
-        );
+    const savedDrawingData = localStorage.getItem("savedDrawing");
+    if (savedDrawingData) {
+      const { imageData } = JSON.parse(savedDrawingData);
+      const canvas = canvasRef.current;
+      const context = canvas.getContext("2d");
+      const img = new Image();
+      img.src = imageData;
+      img.onload = () => {
+        context.drawImage(img, 0, 0);
       };
     }
   }, []);
@@ -116,8 +108,6 @@ export default function Tool() {
   return (
     <div className="pageWrapper toolPage">
       <div className="toolContainer">
-        {currentOrientation && <p>Current Orientation: {currentOrientation}</p>}
-
         <div className="colorButtons">
           <button
             className="colorButton  black"
