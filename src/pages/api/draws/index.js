@@ -24,7 +24,7 @@ export default async function handler(request, response) {
     try {
       const { imageData, userId, published } = request.body;
 
-      // Create a new Draw document and save it to the database
+      // Create a new Draw document and save it to the database (MongoDB Atlas)
       const newDraw = new Draw({
         imageData,
         userId,
