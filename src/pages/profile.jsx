@@ -20,7 +20,9 @@ export default function Profile() {
   if (isLoading) return <div className="centeredText">Loading...</div>;
   if (error)
     return (
-      <div className="centeredText">No drawings here, try to refresh!</div>
+      <div className="centeredText">
+        No drawings here, <br></br>try to refresh!
+      </div>
     );
 
   async function deleteDrawing(id) {

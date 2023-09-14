@@ -10,7 +10,9 @@ export default function Archive() {
   if (isLoading) return <div className="centeredText">Loading...</div>;
   if (error)
     return (
-      <div className="centeredText">No drawings here, try to refresh!</div>
+      <div className="centeredText">
+        No drawings here, <br></br> try to refresh!
+      </div>
     );
 
   // Filter the data to include only drawings with published: true
