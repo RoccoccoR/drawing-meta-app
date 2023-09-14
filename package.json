@@ -21,6 +21,7 @@
     "react": "18.2.0",
     "react-color": "^2.19.3",
     "react-colorful": "^5.6.1",
+    "react-device-detect": "^2.2.3",
     "react-dom": "18.2.0",
     "react-layout-masonry": "^1.0.6",
     "react-plock": "^3.0.2",
