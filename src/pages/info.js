@@ -32,19 +32,19 @@ export default function Tool() {
     }
   }, []);
 
-  // Lock the screen orientation to "portrait-primary" on component load
   useEffect(() => {
-    if (typeof screen !== "undefined" && screen.orientation) {
-      screen.orientation
-        .lock("portrait-primary")
-        .then(() => {
-          console.log("Screen orientation locked to portrait-primary");
-        })
-        .catch((error) => {
-          console.error("Error locking screen orientation:", error);
-        });
+    // Check if the device is in landscape orientation and is a touch device
+    if (
+      currentOrientation === "landscape-primary" ||
+      currentOrientation === "landscape-secondary"
+    ) {
+      // Check if it's a touch device
+      if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+        // Display a message to the user
+        document.body.innerHTML = "<div>Please go back to portrait view</div>";
+      }
     }
-  }, []);
+  }, [currentOrientation]);
 
   const saveDrawingToLocalStorage = (imageData) => {
     const drawingData = {
@@ -130,8 +130,6 @@ export default function Tool() {
   return (
     <div className="pageWrapper toolPage">
       <div className="toolContainer">
-        {currentOrientation && <p>Current Orientation: {currentOrientation}</p>}
-
         <div className="colorButtons">
           <button
             className="colorButton  black"
