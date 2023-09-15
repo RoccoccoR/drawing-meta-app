@@ -22,6 +22,7 @@ export default function LogInBtn() {
     <>
       {/* Not signed in <br /> */}
       <button className="menubarItem" onClick={() => signIn()}>
+        <img className="menuIcon" src="/love-letter_1f48c.png" alt="Profile" />
         Log in to save
       </button>
     </>
