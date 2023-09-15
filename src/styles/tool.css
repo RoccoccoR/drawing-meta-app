@@ -7,9 +7,9 @@
 }
 
 .toolContainer {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
+  /* display: flex;
+  flex-direction: column; */
+
   margin-bottom: 50px;
   padding-left: 25%;
   padding-right: 25%;
@@ -43,7 +43,7 @@
   height: 5rem;
 }
 
-@media (pointer: coarse) {
+/* @media (pointer: coarse) {
   .colorButtons {
     display: flex;
     flex-direction: row;
@@ -55,7 +55,7 @@
     margin-bottom: 1rem;
     min-width: 30px;
   }
-}
+} */
 
 #canvasContainer {
   width: 100%;
@@ -69,7 +69,7 @@
     height: 50vh;
   }
 }
-
+/* 
 .colorButtons {
   display: flex;
   flex-direction: row;
@@ -79,4 +79,4 @@
   gap: 1rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
-}
+} */
