@@ -139,21 +139,45 @@ export default function Profile() {
             <h1>{drawing.user}</h1> */}
               <div className="toolButtonsContainerProfile">
                 <button
-                  className="publishButton"
+                  className="menubarItem navBarMenu"
                   type="button"
                   onClick={(event) => {
                     event.preventDefault();
                     setPublished(drawing);
                   }}>
-                  {drawing.published ? "Unpublish" : "Publish"}
+                  {drawing.published ? (
+                    <>
+                      <img
+                        className="menuIcon"
+                        src="/boomerang_1fa83.png"
+                        alt="Unpublish"
+                      />
+                      Unpublish
+                    </>
+                  ) : (
+                    <>
+                      <img
+                        className="menuIcon"
+                        src="/boomerang_1fa83.png"
+                        alt="Publish"
+                      />
+                      Publish
+                    </>
+                  )}
                 </button>
+
                 <button
-                  className="deleteButton"
+                  className="menubarItem navBarProfile"
                   type="button"
                   onClick={(event) => {
                     event.preventDefault();
                     deleteDrawing(drawing._id);
                   }}>
+                  <img
+                    className="menuIcon"
+                    src="/wastebasket_1f5d1-fe0f.png"
+                    alt="clear"
+                  />
                   Delete
                 </button>
                 {/* <button

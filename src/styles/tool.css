@@ -1,24 +1,3 @@
-.saveButton,
-.downloadButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50px;
-  height: 40px;
-  /* font-size: 1rem; */
-  border: 2px solid black;
-  width: 28%;
-}
-
-.saveButton {
-  color: #0f0;
-  background-color: black;
-}
-.downloadButton {
-  color: black;
-  background-color: #0f0;
-}
-
 .pageWrapper {
   display: flex;
   flex-direction: column;
@@ -28,13 +7,13 @@
 }
 
 .toolContainer {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
+  /* display: flex;
+  flex-direction: column; */
+
   margin-bottom: 50px;
   padding-left: 25%;
   padding-right: 25%;
-  min-width: 350px;
+  /* min-width: 350px; */
   height: 90vh;
 }
 
@@ -42,45 +21,29 @@
   .toolContainer {
     display: flex;
     flex-direction: column;
-    align-content: center;
     width: 100vw;
     margin-bottom: 50px;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 1vh;
+    padding-right: 1vh;
     min-width: 350px;
     position: fixed;
     right: calc((100vw -50%) / 2);
-    top: calc((100vh - 92%) / 2);
+    top: calc((100vh - 82%) / 2);
   }
-}
-
-.downloadButton:hover,
-.clearButton:hover {
-  color: #0f0;
-  background-color: black;
-}
-
-.saveButton:hover {
-  color: black;
-  background-color: #0f0;
 }
 
 .toolButtonsContainer {
   align-items: flex-end;
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
-  align-content: center;
-  justify-content: center;
-  gap: 1rem;
   margin-bottom: 1rem;
-  gap: 1rem;
   margin-top: 1rem;
   height: 5rem;
-  min-width: 350px;
 }
 
-@media (pointer: coarse) {
+/* @media (pointer: coarse) {
   .colorButtons {
     display: flex;
     flex-direction: row;
@@ -92,20 +55,7 @@
     margin-bottom: 1rem;
     min-width: 30px;
   }
-}
-
-.clearButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50px;
-  height: 40px;
-  font-size: 1rem;
-  border: 2px solid black;
-  width: 28%;
-  color: black;
-  background-color: #0f0;
-}
+} */
 
 #canvasContainer {
   width: 100%;
@@ -119,13 +69,7 @@
     height: 50vh;
   }
 }
-
-.clearButton,
-.saveButton,
-.downloadButton {
-  cursor: pointer;
-}
-
+/* 
 .colorButtons {
   display: flex;
   flex-direction: row;
@@ -135,41 +79,4 @@
   gap: 1rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  min-width: 350px;
-}
-
-.colorButton {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  border: 2px solid black;
-  cursor: pointer;
-}
-
-.colorButton:hover {
-  border: 2px solid #0f0;
-}
-
-.black {
-  background-color: black;
-}
-
-.blue {
-  background-color: blue;
-}
-
-.red {
-  background-color: red;
-}
-
-.yellow {
-  background-color: yellow;
-}
-
-.green {
-  background-color: green;
-}
-
-.white {
-  background-color: white;
-}
+} */
