@@ -3,6 +3,9 @@ import { useSession } from "next-auth/react";
 import { isMobile, isBrowser } from "react-device-detect"; // Import isMobile and isBrowser
 import LogInBtnToSave from "../../components/LogInBtn/LogInBtnToSave";
 import FreeLineOnly from "../../components/Tools/FreeLineOnly";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Tool() {
   const canvasRef = useRef(null);
@@ -125,7 +128,7 @@ export default function Tool() {
   };
 
   return (
-    <div>
+    <div className={inter.className}>
       {/* ____________________if is isBrowser_________________________ */}
 
       {isBrowser && (
@@ -218,9 +221,9 @@ export default function Tool() {
           </div>
         </div>
       )}
-      {/* {isMobile && isLandscape && (
+      {isMobile && isLandscape && (
         <div className="centeredText">Please rotate your device :)</div>
-      )} */}
+      )}
       {/* {!isMobile && !isLandscape && <p>This is not a mobile device</p>} */}
     </div>
   );
