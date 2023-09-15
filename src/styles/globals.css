@@ -8,6 +8,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  letter-spacing: -0.01rem;
 }
 
 /* html,
@@ -24,6 +25,10 @@ body {
   position: relative;
   width: 100vw;
   height: 100vh;
+}
+
+canvas {
+  border-radius: 1%;
 }
 
 .centeredText {
@@ -73,6 +78,17 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
 }
 
 @media (max-width: 767px) {

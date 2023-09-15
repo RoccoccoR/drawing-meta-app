@@ -13,7 +13,7 @@ export default function Tool() {
   const { data: session } = useSession();
   const [currentColor, setCurrentColor] = useState("black");
   const [isLandscape, setIsLandscape] = useState(false); // Define isLandscape variable
-
+  const [showColors, setShowColors] = useState(false);
   // Load saved drawing data from local storage when the component mounts
   useEffect(() => {
     // Load saved drawing data from local storage when the component mounts
@@ -127,6 +127,10 @@ export default function Tool() {
     context.clearRect(0, 0, canvas.width, canvas.height);
   };
 
+  const toggleColorButtons = () => {
+    setShowColors(!showColors);
+  };
+
   return (
     <div className={inter.className}>
       {/* ____________________if is isBrowser_________________________ */}
@@ -134,42 +138,96 @@ export default function Tool() {
       {isBrowser && (
         <div className="pageWrapper toolPage">
           <div className="toolContainer">
-            <div className="colorButtons">
-              <button
-                className="colorButton  black"
-                onClick={() => setCurrentColor("black")}></button>
-              <button
-                className="colorButton red"
-                onClick={() => setCurrentColor("red")}></button>
-              <button
-                className="colorButton blue"
-                onClick={() => setCurrentColor("blue")}></button>
-              <button
-                className="colorButton green"
-                onClick={() => setCurrentColor("green")}></button>
-              <button
-                className="colorButton yellow"
-                onClick={() => setCurrentColor("yellow")}></button>
-              <button
-                className="colorButton white"
-                onClick={() => setCurrentColor("white")}></button>
-            </div>
+            <button className="menubarItem " onClick={toggleColorButtons}>
+              {showColors ? (
+                <>
+                  <img
+                    className="menuIcon"
+                    src="/cross-mark_274c.png"
+                    alt="Close Colors"
+                  />
+                </>
+              ) : (
+                <>
+                  <img
+                    className="menuIcon"
+                    src="/artist-palette_1f3a8.png"
+                    alt="Open Colors"
+                  />
+                  Colors
+                </>
+              )}
+            </button>
+
+            {showColors && (
+              <div>
+                <div className="colorButtons">
+                  <button
+                    className={`colorButton black ${
+                      currentColor === "black" ? "active" : ""
+                    }`}
+                    onClick={() => setCurrentColor("black")}></button>
+                  <button
+                    className={`colorButton red ${
+                      currentColor === "red" ? "active" : ""
+                    }`}
+                    onClick={() => setCurrentColor("red")}></button>
+                  <button
+                    className={`colorButton blue ${
+                      currentColor === "blue" ? "active" : ""
+                    }`}
+                    onClick={() => setCurrentColor("blue")}></button>
+                  <button
+                    className={`colorButton green ${
+                      currentColor === "green" ? "active" : ""
+                    }`}
+                    onClick={() => setCurrentColor("green")}></button>
+                  <button
+                    className={`colorButton yellow ${
+                      currentColor === "yellow" ? "active" : ""
+                    }`}
+                    onClick={() => setCurrentColor("yellow")}></button>
+                  <button
+                    className={`colorButton white ${
+                      currentColor === "white" ? "active" : ""
+                    }`}
+                    onClick={() => setCurrentColor("white")}></button>
+                </div>
+              </div>
+            )}
             <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
             <section className="toolButtonsContainer">
               {saveMessage && <p>{saveMessage}</p>}
               {session ? (
                 <>
-                  <button className="saveButton" onClick={handleSaveClick}>
+                  <button
+                    className="menubarItem navBarProfile"
+                    onClick={handleSaveClick}>
+                    <img
+                      className="menuIcon"
+                      src="/love-letter_1f48c.png"
+                      alt="Profile"
+                    />
                     Save
                   </button>
                 </>
               ) : (
                 <LogInBtnToSave />
               )}
-              <button className="downloadButton" onClick={handleDownloadClick}>
+              <button className="menubarItem " onClick={handleDownloadClick}>
+                <img
+                  className="menuIcon"
+                  src="/down-arrow_2b07-fe0f.png"
+                  alt="Profile"
+                />
                 Download
               </button>
-              <button className="clearButton" onClick={clearCanvas}>
+              <button className="menubarItem " onClick={clearCanvas}>
+                <img
+                  className="menuIcon"
+                  src="/wastebasket_1f5d1-fe0f.png"
+                  alt="clear"
+                />
                 Clear
               </button>
             </section>
@@ -179,42 +237,94 @@ export default function Tool() {
       {isMobile && !isLandscape && (
         <div className="pageWrapper toolPage">
           <div className="toolContainer">
-            <div className="colorButtons">
-              <button
-                className="colorButton  black"
-                onClick={() => setCurrentColor("black")}></button>
-              <button
-                className="colorButton red"
-                onClick={() => setCurrentColor("red")}></button>
-              <button
-                className="colorButton blue"
-                onClick={() => setCurrentColor("blue")}></button>
-              <button
-                className="colorButton green"
-                onClick={() => setCurrentColor("green")}></button>
-              <button
-                className="colorButton yellow"
-                onClick={() => setCurrentColor("yellow")}></button>
-              <button
-                className="colorButton white"
-                onClick={() => setCurrentColor("white")}></button>
-            </div>
+            <button className="menubarItem " onClick={toggleColorButtons}>
+              {showColors ? (
+                <>
+                  <img
+                    className="menuIcon"
+                    src="/cross-mark_274c.png"
+                    alt="Close Colors"
+                  />
+                  {showColors && (
+                    <div>
+                      <button
+                        className={`menuIcon ${
+                          currentColor === "black" ? "active" : ""
+                        }`}
+                        onClick={() => setCurrentColor("black")}></button>
+                      <button
+                        className={`menuIcon red ${
+                          currentColor === "red" ? "active" : ""
+                        }`}
+                        onClick={() => setCurrentColor("red")}></button>
+                      <button
+                        className={`menuIcon ${
+                          currentColor === "blue" ? "active" : ""
+                        }`}
+                        onClick={() => setCurrentColor("blue")}></button>
+                      <button
+                        className={`menuIcon ${
+                          currentColor === "green" ? "active" : ""
+                        }`}
+                        onClick={() => setCurrentColor("green")}></button>
+                      <button
+                        className={`menuIcon ${
+                          currentColor === "yellow" ? "active" : ""
+                        }`}
+                        onClick={() => setCurrentColor("yellow")}></button>
+                      <button
+                        className={`menuIcon ${
+                          currentColor === "white" ? "active" : ""
+                        }`}
+                        onClick={() => setCurrentColor("white")}></button>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  <img
+                    className="menuIcon"
+                    src="/artist-palette_1f3a8.png"
+                    alt="Open Colors"
+                  />
+                  Colors
+                </>
+              )}
+            </button>
+
             <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
             <section className="toolButtonsContainer">
               {saveMessage && <p>{saveMessage}</p>}
               {session ? (
                 <>
-                  <button className="saveButton" onClick={handleSaveClick}>
+                  <button className="menubarItem " onClick={handleSaveClick}>
+                    <img
+                      className="menuIcon"
+                      src="/love-letter_1f48c.png"
+                      alt="Profile"
+                    />
                     Save
                   </button>
                 </>
               ) : (
                 <LogInBtnToSave />
               )}
-              <button className="downloadButton" onClick={handleDownloadClick}>
+              <button className="menubarItem " onClick={handleDownloadClick}>
+                <img
+                  className="menuIcon"
+                  src="/alien_1f47d.png"
+                  alt="Profile"
+                />
                 Download
               </button>
-              <button className="clearButton" onClick={clearCanvas}>
+              <button
+                className="menubarItem navBarProfile"
+                onClick={clearCanvas}>
+                <img
+                  className="menuIcon"
+                  src="/wastebasket_1f5d1-fe0f.png"
+                  alt="clear"
+                />
                 Clear
               </button>
             </section>

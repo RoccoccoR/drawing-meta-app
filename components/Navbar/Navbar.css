@@ -1,4 +1,4 @@
-.menubarItem {
+/* .menubarItem {
   font-size: 1rem;
   border-top: 2px solid black;
   border-bottom: 2px solid black;
@@ -6,35 +6,53 @@
   width: 100vw;
   display: flex;
   justify-content: center;
+} */
+
+.menubarItem {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  /* background-color: #dcdcdc; */
+  cursor: pointer;
+  border-radius: 5%;
+  padding: 0.5vh;
+  margin: 1vh;
 }
 
-@media (pointer: coarse) {
+.menuIcon {
+  height: 1.5rem;
+  cursor: pointer;
+  margin-right: 0.2rem;
+  margin-left: 0.1rem;
+}
+
+.menubarItem:hover .menuIcon {
+  transition: transform 0.5s ease; /* Add a smooth transition */
+  transform: rotate(360deg); /* Rotate the menuIcon 180 degrees on hover */
+}
+
+/* @media (pointer: coarse) {
   .menubarItem {
     font-size: 1rem;
-    padding: 1rem;
-    /* right: calc((100vw -50%) / 2);
+    padding: 1rem; */
+/* right: calc((100vw -50%) / 2);
     top: calc((100vh - 92%) / 2); */
-  }
-}
+/* }
+} */
 
-@media (pointer: coarse) {
+/* @media (pointer: coarse) {
   .menuContainer {
     position: fixed;
-    width: 100vw;
-    /* right: calc((100vw -50%) / 2);
+    width: 100vw; */
+/* right: calc((100vw -50%) / 2);
     top: calc((100vh - 92%) / 2); */
-  }
-}
+/* }
+} */
 
 .menuContainer {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
-}
-
-.navBarDraw:hover,
-.navBarProfile:hover,
-.navBarArchive:hover,
-.navBarInfo:hover {
-  background-color: black;
-  color: #0f0;
 }
