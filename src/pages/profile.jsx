@@ -139,7 +139,7 @@ export default function Profile() {
             <h1>{drawing.user}</h1> */}
               <div className="toolButtonsContainerProfile">
                 <button
-                  className="menubarItem navBarMenu"
+                  className="menubarItemA navBarMenu"
                   type="button"
                   onClick={(event) => {
                     event.preventDefault();

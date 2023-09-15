@@ -1,20 +1,17 @@
-/* .menubarItem {
-  font-size: 1rem;
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
-  padding: 1rem;
-  width: 100vw;
+.menuContainer {
   display: flex;
-  justify-content: center;
-} */
+  flex-direction: row;
+  position: absolute;
+}
 
 .menubarItem {
   font-size: 1.5rem;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: white;
-  /* background-color: #dcdcdc; */
+  /* background-color: white; */
+  background-color: #eeeeee;
   cursor: pointer;
   border-radius: 5%;
   padding: 0.5vh;
@@ -51,14 +48,18 @@
 /* }
 } */
 
-.menuContainer {
+/* .menubarItem {
+  font-size: 1rem;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  padding: 1rem;
+  width: 100vw;
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-}
+  justify-content: center;
+} */
 
-/* .colorsBox {
+.colorsBox {
   position: absolute;
   top: 0;
   right: 0;
-} */
+}

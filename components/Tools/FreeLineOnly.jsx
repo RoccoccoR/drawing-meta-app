@@ -22,6 +22,7 @@ export default function FreeLineTest({ canvasRef, currentColor }) {
       canvas.addEventListener("mousedown", startDrawing);
       canvas.addEventListener("mouseup", finishDrawing);
       canvas.addEventListener("mousemove", draw);
+      canvas.addEventListener("mouseleave", finishDrawing);
       canvas.addEventListener("touchstart", startDrawing);
       canvas.addEventListener("touchend", finishDrawing);
       canvas.addEventListener("touchmove", draw);
@@ -31,6 +32,7 @@ export default function FreeLineTest({ canvasRef, currentColor }) {
       canvas.removeEventListener("mousedown", startDrawing);
       canvas.removeEventListener("mouseup", finishDrawing);
       canvas.removeEventListener("mousemove", draw);
+      canvas.removeEventListener("mouseleave", finishDrawing);
       canvas.removeEventListener("touchstart", startDrawing);
       canvas.removeEventListener("touchend", finishDrawing);
       canvas.removeEventListener("touchmove", draw);
