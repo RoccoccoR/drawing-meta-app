@@ -219,7 +219,7 @@ export default function Tool() {
         </div>
       )}
       {isMobile && isLandscape && (
-        <h3 className="centeredText">Please rotate your device :)</h3>
+        <div className="centeredText">Please rotate your device :)</div>
       )}
       {/* {!isMobile && !isLandscape && <p>This is not a mobile device</p>} */}
     </div>

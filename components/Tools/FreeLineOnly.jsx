@@ -10,23 +10,13 @@ export default function FreeLineTest({ canvasRef, currentColor }) {
     if (canvas) {
       canvas.style.width = "100%";
       canvas.style.height = "100%";
-
-      // Increase the canvas resolution
-      const scaleFactor = window.devicePixelRatio;
-      canvas.width = canvas.offsetWidth * scaleFactor;
-      canvas.height = canvas.offsetHeight * scaleFactor;
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
 
       const context = canvas.getContext("2d");
-
-      // Scale the context down to the display size
-      context.scale(scaleFactor, scaleFactor);
-
+      context.scale(1, 1);
       context.lineCap = "round";
       context.lineWidth = 4;
-
-      // Enable anti-aliasing
-      context.imageSmoothingEnabled = true;
-
       contextRef.current = context;
 
       canvas.addEventListener("mousedown", startDrawing);
