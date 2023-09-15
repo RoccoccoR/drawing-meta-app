@@ -43,6 +43,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap;
   /* margin-bottom: 1rem;
   margin-top: 1rem;
   height: 5rem; */
