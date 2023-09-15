@@ -410,7 +410,7 @@ export default function Tool() {
                   <img
                     className="menuIcon"
                     src="/wastebasket_1f5d1-fe0f.png"
-                    alt="clear"
+                    alt=""
                   />
                   Clear
                 </button>

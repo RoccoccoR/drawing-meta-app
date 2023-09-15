@@ -1,6 +1,7 @@
 .menuContainer {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   position: absolute;
 }
 
@@ -15,7 +16,9 @@
   cursor: pointer;
   border-radius: 5%;
   padding: 0.5vh;
-  margin: 1vh;
+  margin-left: 1vh;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
 }
 
 .menuIcon {
@@ -62,4 +65,5 @@
   position: absolute;
   top: 0;
   right: 0;
+  margin-right: 1vh;
 }
