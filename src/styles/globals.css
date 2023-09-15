@@ -12,6 +12,10 @@
   user-select: none;
 }
 
+.backgroundWhite {
+  background-color: white;
+}
+
 /* html,
 body {
   overscroll-behavior-y: contain;
