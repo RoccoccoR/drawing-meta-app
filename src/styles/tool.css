@@ -28,7 +28,7 @@
     min-width: 350px;
     position: fixed;
     right: calc((100vw -50%) / 2);
-    top: calc((100vh - 92%) / 2);
+    top: calc((100vh - 82%) / 2);
   }
 }
 

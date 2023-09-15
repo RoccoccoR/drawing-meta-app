@@ -136,9 +136,9 @@ export default function Tool() {
       {/* ____________________if is isBrowser_________________________ */}
 
       {isBrowser && (
-        <div className="pageWrapper toolPage">
+        <>
           <button
-            className="menubarItem navBarMenu "
+            className="menubarItem navBarMenu colorsBox"
             onClick={toggleColorButtons}>
             {showColors ? (
               <>
@@ -235,143 +235,189 @@ export default function Tool() {
               </>
             )}
           </button>
-
-          <div className="toolContainer">
-            <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
-            <section className="toolButtonsContainer">
-              {saveMessage && <p>{saveMessage}</p>}
-              {session ? (
-                <>
-                  <button
-                    className="menubarItem navBarProfile"
-                    onClick={handleSaveClick}>
-                    <img
-                      className="menuIcon"
-                      src="/love-letter_1f48c.png"
-                      alt="Profile"
-                    />
-                    Save
-                  </button>
-                </>
-              ) : (
-                <LogInBtnToSave />
-              )}
-              <button className="menubarItem " onClick={handleDownloadClick}>
-                <img
-                  className="menuIcon"
-                  src="/down-arrow_2b07-fe0f.png"
-                  alt="Profile"
-                />
-                Download
-              </button>
-              <button className="menubarItem " onClick={clearCanvas}>
-                <img
-                  className="menuIcon"
-                  src="/wastebasket_1f5d1-fe0f.png"
-                  alt="clear"
-                />
-                Clear
-              </button>
-            </section>
+          <div className="pageWrapper toolPage">
+            <div className="toolContainer">
+              <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
+              <section className="toolButtonsContainer">
+                {saveMessage && <p>{saveMessage}</p>}
+                {session ? (
+                  <>
+                    <button
+                      className="menubarItem navBarProfile"
+                      onClick={handleSaveClick}>
+                      <img
+                        className="menuIcon"
+                        src="/love-letter_1f48c.png"
+                        alt="Profile"
+                      />
+                      Save
+                    </button>
+                  </>
+                ) : (
+                  <LogInBtnToSave />
+                )}
+                <button className="menubarItem " onClick={handleDownloadClick}>
+                  <img
+                    className="menuIcon"
+                    src="/down-arrow_2b07-fe0f.png"
+                    alt="Profile"
+                  />
+                  Download
+                </button>
+                <button className="menubarItem " onClick={clearCanvas}>
+                  <img
+                    className="menuIcon"
+                    src="/wastebasket_1f5d1-fe0f.png"
+                    alt="clear"
+                  />
+                  Clear
+                </button>
+              </section>
+            </div>
           </div>
-        </div>
+        </>
       )}
       {isMobile && !isLandscape && (
-        <div className="pageWrapper toolPage">
-          <div className="toolContainer">
-            <button className="menubarItem " onClick={toggleColorButtons}>
-              {showColors ? (
-                <>
-                  <img
-                    className="menuIcon"
-                    src="/cross-mark_274c.png"
-                    alt="Close Colors"
-                  />
-                  {showColors && (
-                    <div>
+        <>
+          <button
+            className="menubarItem navBarMenu colorsBox"
+            onClick={toggleColorButtons}>
+            {showColors ? (
+              <>
+                <img
+                  className="menuIcon"
+                  src="/cross-mark_274c.png"
+                  alt="Close Colors"
+                />
+                {showColors && (
+                  <div>
+                    <div className="colorButtons">
                       <button
-                        className={`menuIcon ${
+                        className={`colorButton black ${
                           currentColor === "black" ? "active" : ""
                         }`}
-                        onClick={() => setCurrentColor("black")}></button>
+                        onClick={() => setCurrentColor("black")}>
+                        <img
+                          className="menuIcon"
+                          src="/black-circle_26ab.png"
+                          alt="Black Circle"
+                        />
+                      </button>
                       <button
-                        className={`menuIcon red ${
+                        className={`colorButton red ${
                           currentColor === "red" ? "active" : ""
                         }`}
-                        onClick={() => setCurrentColor("red")}></button>
+                        onClick={() => setCurrentColor("red")}>
+                        {" "}
+                        <img
+                          className="menuIcon"
+                          src="/large-red-circle_1f534.png"
+                          alt="Black Circle"
+                        />
+                      </button>
                       <button
-                        className={`menuIcon ${
+                        className={`colorButton blue ${
                           currentColor === "blue" ? "active" : ""
                         }`}
-                        onClick={() => setCurrentColor("blue")}></button>
+                        onClick={() => setCurrentColor("blue")}>
+                        <img
+                          className="menuIcon"
+                          src="/large-blue-circle_1f535.png"
+                          alt="Black Circle"
+                        />
+                      </button>
                       <button
-                        className={`menuIcon ${
+                        className={`colorButton green ${
                           currentColor === "green" ? "active" : ""
                         }`}
-                        onClick={() => setCurrentColor("green")}></button>
+                        onClick={() => setCurrentColor("green")}>
+                        {" "}
+                        <img
+                          className="menuIcon"
+                          src="/large-green-circle_1f7e2.png"
+                          alt="Black Circle"
+                        />
+                      </button>
                       <button
-                        className={`menuIcon ${
+                        className={`colorButton yellow ${
                           currentColor === "yellow" ? "active" : ""
                         }`}
-                        onClick={() => setCurrentColor("yellow")}></button>
+                        onClick={() => setCurrentColor("yellow")}>
+                        {" "}
+                        <img
+                          className="menuIcon"
+                          src="/large-yellow-circle_1f7e1.png"
+                          alt="Black Circle"
+                        />
+                      </button>
                       <button
-                        className={`menuIcon ${
+                        className={`colorButton white ${
                           currentColor === "white" ? "active" : ""
                         }`}
-                        onClick={() => setCurrentColor("white")}></button>
+                        onClick={() => setCurrentColor("white")}>
+                        {" "}
+                        <img
+                          className="menuIcon"
+                          src="/white-circle_26aa.png"
+                          alt="Black Circle"
+                        />
+                      </button>
                     </div>
-                  )}
-                </>
-              ) : (
-                <>
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                <img
+                  className="menuIcon"
+                  src="/artist-palette_1f3a8.png"
+                  alt="Open Colors"
+                />
+                Colors
+              </>
+            )}
+          </button>
+          <div className="pageWrapper toolPage">
+            <div className="toolContainer">
+              <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
+              <section className="toolButtonsContainer">
+                {saveMessage && <p>{saveMessage}</p>}
+                {session ? (
+                  <>
+                    <button
+                      className="menubarItem navBarProfile"
+                      onClick={handleSaveClick}>
+                      <img
+                        className="menuIcon"
+                        src="/love-letter_1f48c.png"
+                        alt="Profile"
+                      />
+                      Save
+                    </button>
+                  </>
+                ) : (
+                  <LogInBtnToSave />
+                )}
+                <button className="menubarItem " onClick={handleDownloadClick}>
                   <img
                     className="menuIcon"
-                    src="/artist-palette_1f3a8.png"
-                    alt="Open Colors"
+                    src="/down-arrow_2b07-fe0f.png"
+                    alt="Profile"
                   />
-                  Colors
-                </>
-              )}
-            </button>
-
-            <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
-            <section className="toolButtonsContainer">
-              {saveMessage && <p>{saveMessage}</p>}
-              {session ? (
-                <>
-                  <button className="menubarItem " onClick={handleSaveClick}>
-                    <img
-                      className="menuIcon"
-                      src="/love-letter_1f48c.png"
-                      alt="Profile"
-                    />
-                    Save
-                  </button>
-                </>
-              ) : (
-                <LogInBtnToSave />
-              )}
-              <button className="menubarItem " onClick={handleDownloadClick}>
-                <img
-                  className="menuIcon"
-                  src="/alien_1f47d.png"
-                  alt="Profile"
-                />
-                Download
-              </button>
-              <button
-                className="menubarItem navBarProfile"
-                onClick={clearCanvas}>
-                <img
-                  className="menuIcon"
-                  src="/wastebasket_1f5d1-fe0f.png"
-                  alt="clear"
-                />
-                Clear
-              </button>
-            </section>
+                  Download
+                </button>
+                <button className="menubarItem " onClick={clearCanvas}>
+                  <img
+                    className="menuIcon"
+                    src="/wastebasket_1f5d1-fe0f.png"
+                    alt="clear"
+                  />
+                  Clear
+                </button>
+              </section>
+            </div>
           </div>
-        </div>
+        </>
       )}
       {isMobile && isLandscape && (
         <div className="centeredText">Please rotate your device :)</div>
