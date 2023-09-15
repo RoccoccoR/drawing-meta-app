@@ -167,7 +167,7 @@ export default function Profile() {
                 </button>
 
                 <button
-                  className="menubarItem navBarProfile"
+                  className="menubarItemA navBarProfile"
                   type="button"
                   onClick={(event) => {
                     event.preventDefault();
