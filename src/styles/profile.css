@@ -3,6 +3,22 @@
   background-color: white;
 }
 
+.menubarItemA {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* background-color: white; */
+  background-color: #eeeeee;
+  cursor: pointer;
+  border-radius: 5%;
+  padding: 0.5vh;
+  margin-right: 1vh;
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+}
+
 .profileGrid {
   display: grid;
   grid-gap: 1rem;
@@ -44,12 +60,11 @@
 }
 
 .toolButtonsContainerProfile {
+  align-items: flex-end;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  gap: 1rem;
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 /* For screens larger than 1400 pixels (e.g., large desktop) */
