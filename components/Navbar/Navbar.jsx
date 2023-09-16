@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import LogInBtn from "../LogInBtn/LogInBtn";
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+    setIsOpen(!isOpen);
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
   };
 
   return (
-    <div className="menuContainer">
-      <a className="menubarItem navBarMenu" onClick={toggleMenu}>
-        {menuOpen ? (
+    <div className="menu-container">
+      {isOpen ? (
+        <button className="menubarItem navBarMenu" onClick={closeMenu}>
           <>
             <img
               className="menuIcon"
@@ -20,14 +25,16 @@ export default function Navbar() {
             />
             Menu
           </>
-        ) : (
+        </button>
+      ) : (
+        <button className="menubarItem navBarMenu" onClick={toggleMenu}>
           <>
             <img className="menuIcon" src="/hamburger_1f354.png" alt="Menu" />
             Menu
           </>
-        )}
-      </a>
-      {menuOpen && (
+        </button>
+      )}
+      {isOpen && (
         <div className="menuContainer">
           <Link className="menubarItem navBarDraw" href="/tool">
             <img
@@ -53,15 +60,9 @@ export default function Navbar() {
             />
             Saved
           </Link>
-          <Link className="menubarItem navBarProfile" href="/profile">
-            <img className="menuIcon" src="/alien_1f47d.png" alt="Profile" />
-            Profile
-          </Link>
+          <LogInBtn />
         </div>
       )}
-      {/* <Link className="menubarItem navBarInfo" href="/info">
-        Info
-      </Link> */}
     </div>
   );
 }
