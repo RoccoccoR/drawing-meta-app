@@ -16,14 +16,15 @@
   background-color: white;
 }
 
-/* html,
+html,
 body {
   overscroll-behavior-y: contain;
-} */
+  height: 100%;
+}
 
 :root {
   background-color: #0f0;
-  width: 100vw;
+  /* width: 100vw; */
 }
 
 .main-container {
@@ -32,9 +33,9 @@ body {
   height: 100vh;
 }
 
-/* canvas {
-  border-radius: 1%;
-} */
+canvas {
+  height: 100vh;
+}
 
 .centeredText {
   text-align: center;
@@ -101,52 +102,3 @@ button {
     font-size: 2rem;
   }
 }
-
-/* main {
-  position: fixed;
-  height: 100vh;
-  overflow: hidden;
-  overscroll-behavior: none;
-} */
-
-/* .rootHomepage {
-  position: fixed;
-  height: 100vh;
-  overflow: hidden;
-  overscroll-behavior: none;
-} */
-
-/* .toolPage {
-  position: fixed;
-  height: 100vh;
-  overflow: hidden;
-  overscroll-behavior: none;
-} */
-
-/* .infoPage {
-  position: fixed;
-  height: 100vh;
-  overflow: hidden;
-  overscroll-behavior: none;
-} */
-
-/* .menuContainer {
-  position: fixed;
-  width: 100vw;
-  overflow: hidden;
-  overscroll-behavior: none;
-} */
-
-/* canvas {
-  position: fixed;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-} */
-
-/* .fixedCanvas {
-  position: fixed;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-} */
