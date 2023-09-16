@@ -136,7 +136,7 @@ export default function Tool() {
       {/* ____________________if is isBrowser_________________________ */}
 
       {isBrowser && (
-        <div>
+        <>
           <button
             className="menubarItem navBarMenu colorsBox"
             onClick={toggleColorButtons}>
@@ -275,7 +275,7 @@ export default function Tool() {
               </section>
             </div>
           </div>
-        </div>
+        </>
       )}
       {isMobile && !isLandscape && (
         <>
