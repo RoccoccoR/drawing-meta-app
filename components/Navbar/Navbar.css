@@ -12,6 +12,7 @@
   margin-top: 1vh;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
   vertical-align: top;
+  min-height: 40px;
 }
 
 .menuContainer {
@@ -70,7 +71,7 @@
 }
 
 .colorsBox {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   margin-right: 1vh;
@@ -79,4 +80,5 @@
   align-items: center;
   flex-direction: row;
   align-items: center;
+  z-index: 2;
 }

@@ -16,7 +16,7 @@
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  /* margin-bottom: 1vh; */
+  margin-bottom: 1vh;
 }
 
 #canvasContainer {

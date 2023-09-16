@@ -24,13 +24,16 @@ body {
 
 :root {
   background-color: #0f0;
-  /* width: 100vw; */
 }
 
 .main-container {
   position: relative;
   width: 100vw;
   height: 100vh;
+}
+
+.menuContainer {
+  position: fixed;
 }
 
 canvas {
