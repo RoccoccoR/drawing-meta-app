@@ -12,8 +12,10 @@ export default function LogInBtn() {
           alt="user-image"
           style={{ borderRadius: "50px" }}
         /> */}
-        <button className="logOutBtn" onClick={() => signOut()}>
-          Sign out
+
+        <button className="menubarItem navBarProfile" onClick={() => signOut()}>
+          <img className="menuIcon" src="/alien_1f47d.png" alt="Profile" />
+          Logout
         </button>
       </>
     );
@@ -21,8 +23,9 @@ export default function LogInBtn() {
   return (
     <>
       {/* Not signed in <br /> */}
-      <button className="logInBtn" onClick={() => signIn()}>
-        Sign in
+      <button className="menubarItem navBarProfile" onClick={() => signIn()}>
+        <img className="menuIcon" src="/alien_1f47d.png" alt="Profile" />
+        Login
       </button>
     </>
   );
