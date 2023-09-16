@@ -1,7 +1,3 @@
-/* body {
-  background-color: red;
-} */
-
 .drawingArchiveImage {
   width: 100%;
   background-color: white;
@@ -9,20 +5,7 @@
 
 .masonry {
   padding: 1vh;
-  padding-top: 2%;
 }
-
-@media (max-width: 768px) {
-  .masonry {
-    padding-top: 15%;
-  }
-}
-
-/* .archiveGrid {
-  display: grid;
-  grid-gap: 1rem;
-  margin: 1rem;
-} */
 
 /* For screens larger than 1600 pixels */
 @media (min-width: 1601px) {

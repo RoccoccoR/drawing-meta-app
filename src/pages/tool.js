@@ -151,7 +151,7 @@ export default function Tool() {
                   <div>
                     <div className="colorButtons">
                       <button
-                        className={`colorButton black ${
+                        className={` ${
                           currentColor === "black" ? "active" : ""
                         }`}
                         onClick={() => setCurrentColor("black")}>
@@ -162,9 +162,7 @@ export default function Tool() {
                         />
                       </button>
                       <button
-                        className={`colorButton red ${
-                          currentColor === "red" ? "active" : ""
-                        }`}
+                        className={` ${currentColor === "red" ? "active" : ""}`}
                         onClick={() => setCurrentColor("red")}>
                         {" "}
                         <img
@@ -174,7 +172,7 @@ export default function Tool() {
                         />
                       </button>
                       <button
-                        className={`colorButton blue ${
+                        className={` ${
                           currentColor === "blue" ? "active" : ""
                         }`}
                         onClick={() => setCurrentColor("blue")}>
@@ -185,7 +183,7 @@ export default function Tool() {
                         />
                       </button>
                       <button
-                        className={`colorButton green ${
+                        className={` ${
                           currentColor === "green" ? "active" : ""
                         }`}
                         onClick={() => setCurrentColor("green")}>
@@ -197,7 +195,7 @@ export default function Tool() {
                         />
                       </button>
                       <button
-                        className={`colorButton yellow ${
+                        className={` ${
                           currentColor === "yellow" ? "active" : ""
                         }`}
                         onClick={() => setCurrentColor("yellow")}>
@@ -209,7 +207,7 @@ export default function Tool() {
                         />
                       </button>
                       <button
-                        className={`colorButton white ${
+                        className={` ${
                           currentColor === "white" ? "active" : ""
                         }`}
                         onClick={() => setCurrentColor("white")}>
@@ -293,53 +291,49 @@ export default function Tool() {
                   <div>
                     <div className="colorButtons">
                       <button
-                        className={`colorButton black ${
+                        className={` ${
                           currentColor === "black" ? "active" : ""
                         }`}
                         onClick={() => setCurrentColor("black")}>
                         <img
-                          className="menuIcon"
+                          className="menuIconAC"
                           src="/black-circle_26ab.png"
                           alt="Black Circle"
                         />
                       </button>
                       <button
-                        className={`colorButton red ${
-                          currentColor === "red" ? "active" : ""
-                        }`}
+                        className={`${currentColor === "red" ? "active" : ""}`}
                         onClick={() => setCurrentColor("red")}>
                         {" "}
                         <img
-                          className="menuIcon"
+                          className="menuIconAC"
                           src="/large-red-circle_1f534.png"
                           alt="Black Circle"
                         />
                       </button>
                       <button
-                        className={`colorButton blue ${
-                          currentColor === "blue" ? "active" : ""
-                        }`}
+                        className={`${currentColor === "blue" ? "active" : ""}`}
                         onClick={() => setCurrentColor("blue")}>
                         <img
-                          className="menuIcon"
+                          className="menuIconAC"
                           src="/large-blue-circle_1f535.png"
                           alt="Black Circle"
                         />
                       </button>
                       <button
-                        className={`colorButton green ${
+                        className={`${
                           currentColor === "green" ? "active" : ""
                         }`}
                         onClick={() => setCurrentColor("green")}>
                         {" "}
                         <img
-                          className="menuIcon"
+                          className="menuIconAC"
                           src="/large-green-circle_1f7e2.png"
                           alt="Black Circle"
                         />
                       </button>
                       <button
-                        className={`colorButton yellow ${
+                        className={` ${
                           currentColor === "yellow" ? "active" : ""
                         }`}
                         onClick={() => setCurrentColor("yellow")}>
@@ -351,7 +345,7 @@ export default function Tool() {
                         />
                       </button>
                       <button
-                        className={`colorButton white ${
+                        className={` ${
                           currentColor === "white" ? "active" : ""
                         }`}
                         onClick={() => setCurrentColor("white")}>

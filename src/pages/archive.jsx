@@ -29,6 +29,13 @@ export default function Archive() {
     1536: 6, // 6 columns on screens wider than or equal to 1536px
   };
 
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Optional: Add smooth scrolling behavior
+    });
+  }
+
   return (
     <section className="masonry">
       <Masonry columns={responsiveColumns} gap={16}>
@@ -44,6 +51,10 @@ export default function Archive() {
           </div>
         ))}
       </Masonry>
+      <button className="menubarItem" onClick={() => scrollToTop()}>
+        <img className="menuIcon" src="/top-arrow_1f51d.png" alt="" />
+        Back to Top
+      </button>
     </section>
   );
 }
