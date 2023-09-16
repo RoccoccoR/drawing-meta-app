@@ -14,7 +14,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="menu-container">
+    <div className="menuContainer">
       {isOpen ? (
         <button className="menubarItem navBarMenu" onClick={closeMenu}>
           <>
@@ -35,7 +35,7 @@ export default function Navbar() {
         </button>
       )}
       {isOpen && (
-        <div className="menuContainer">
+        <div className="dropdownMenu">
           <Link className="menubarItem navBarDraw" href="/tool">
             <img
               className="menuIcon"
