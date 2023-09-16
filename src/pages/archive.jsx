@@ -51,7 +51,7 @@ export default function Archive() {
           </div>
         ))}
       </Masonry>
-      <button className="menubarItem" onClick={() => scrollToTop()}>
+      <button className="backToTopButton" onClick={() => scrollToTop()}>
         <img className="menuIcon" src="/top-arrow_1f51d.png" alt="" />
         Back to Top
       </button>
