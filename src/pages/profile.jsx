@@ -109,6 +109,13 @@ export default function Profile() {
     1280: 4, // 5 columns on screens wider than or equal to 1280px
   };
 
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Optional: Add smooth scrolling behavior
+    });
+  }
+
   return (
     <section className="masonry">
       <Masonry columns={responsiveColumns} gap={16}>
@@ -190,6 +197,10 @@ export default function Profile() {
           );
         })}
       </Masonry>
+      <button className="menubarItem" onClick={() => scrollToTop()}>
+        <img className="menuIcon" src="/top-arrow_1f51d.png" alt="" />
+        Back to Top
+      </button>
     </section>
   );
 }
