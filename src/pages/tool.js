@@ -156,7 +156,7 @@ export default function Tool() {
                         }`}
                         onClick={() => setCurrentColor("black")}>
                         <img
-                          className="menuIcon"
+                          className="menuIconAC"
                           src="/black-circle_26ab.png"
                           alt="Black Circle"
                         />
@@ -168,7 +168,7 @@ export default function Tool() {
                         onClick={() => setCurrentColor("red")}>
                         {" "}
                         <img
-                          className="menuIcon"
+                          className="menuIconAC"
                           src="/large-red-circle_1f534.png"
                           alt="Black Circle"
                         />
@@ -179,7 +179,7 @@ export default function Tool() {
                         }`}
                         onClick={() => setCurrentColor("blue")}>
                         <img
-                          className="menuIcon"
+                          className="menuIconAC"
                           src="/large-blue-circle_1f535.png"
                           alt="Black Circle"
                         />
@@ -191,7 +191,7 @@ export default function Tool() {
                         onClick={() => setCurrentColor("green")}>
                         {" "}
                         <img
-                          className="menuIcon"
+                          className="menuIconAC"
                           src="/large-green-circle_1f7e2.png"
                           alt="Black Circle"
                         />
@@ -203,7 +203,7 @@ export default function Tool() {
                         onClick={() => setCurrentColor("yellow")}>
                         {" "}
                         <img
-                          className="menuIcon"
+                          className="menuIconAC"
                           src="/large-yellow-circle_1f7e1.png"
                           alt="Black Circle"
                         />
@@ -215,7 +215,7 @@ export default function Tool() {
                         onClick={() => setCurrentColor("white")}>
                         {" "}
                         <img
-                          className="menuIcon"
+                          className="menuIconAC"
                           src="/white-circle_26aa.png"
                           alt="Black Circle"
                         />
@@ -345,7 +345,7 @@ export default function Tool() {
                         onClick={() => setCurrentColor("yellow")}>
                         {" "}
                         <img
-                          className="menuIcon"
+                          className="menuIconAC"
                           src="/large-yellow-circle_1f7e1.png"
                           alt="Black Circle"
                         />
@@ -357,7 +357,7 @@ export default function Tool() {
                         onClick={() => setCurrentColor("white")}>
                         {" "}
                         <img
-                          className="menuIcon"
+                          className="menuIconAC"
                           src="/white-circle_26aa.png"
                           alt="Black Circle"
                         />
@@ -398,7 +398,7 @@ export default function Tool() {
                 ) : (
                   <LogInBtnToSave />
                 )}
-                <button className="menubarItem " onClick={handleDownloadClick}>
+                <button className="menubarItem" onClick={handleDownloadClick}>
                   <img
                     className="menuIcon"
                     src="/down-arrow_2b07-fe0f.png"
@@ -406,7 +406,7 @@ export default function Tool() {
                   />
                   Download
                 </button>
-                <button className="menubarItem " onClick={clearCanvas}>
+                <button className="menubarItem" onClick={clearCanvas}>
                   <img
                     className="menuIcon"
                     src="/wastebasket_1f5d1-fe0f.png"

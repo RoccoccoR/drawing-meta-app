@@ -1,15 +1,6 @@
-/* .toolContainer { */
-/* display: flex;
-  flex-direction: column; */
-
-/* min-width: 350px; */
-
-/* onlythisbelow */
-/* margin-bottom: 50px;
-  padding-left: 25%;
-  padding-right: 25%; */
-/* height: 90vh; */
-/* } */
+.colorButton {
+  margin-top: 1vh;
+}
 
 @media (pointer: coarse) {
   .toolContainer {
@@ -79,3 +70,16 @@
   margin-top: 2rem;
   margin-bottom: 1rem;
 } */
+
+/* .toolContainer { */
+/* display: flex;
+  flex-direction: column; */
+
+/* min-width: 350px; */
+
+/* onlythisbelow */
+/* margin-bottom: 50px;
+  padding-left: 25%;
+  padding-right: 25%; */
+/* height: 90vh; */
+/* } */
