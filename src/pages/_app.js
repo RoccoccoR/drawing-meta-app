@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     const body = document.querySelector("body");
 
     // Check the current route and add a class to the body element for specific pages
-    if (router.pathname === "/draw") {
+    if (router.pathname === "/tool") {
       body.classList.add("backgroundWhite");
     } else {
       body.classList.remove("backgroundWhite");
