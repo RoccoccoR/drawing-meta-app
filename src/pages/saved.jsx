@@ -1,5 +1,6 @@
 import useSWR, { mutate } from "swr";
 import Masonry from "react-layout-masonry";
+import LogInToSeeSaved from "../../components/LogInBtn/LogInToSeeSaved";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
@@ -16,7 +17,18 @@ export default function Profile() {
   const router = useRouter();
   const { push } = router;
 
-  if (isLoading) return <div className="centeredText">Loading...</div>;
+  if (isLoading)
+    return (
+      <div className="centeredText">
+        {" "}
+        <img
+          className="menuIcon"
+          src="/satellite-antenna_1f4e1.png"
+          alt="Loading"
+        />
+        Loading...
+      </div>
+    );
   if (error)
     return (
       <div className="centeredText">
@@ -197,10 +209,19 @@ export default function Profile() {
           );
         })}
       </Masonry>
-      <button className="backToTopButton" onClick={() => scrollToTop()}>
-        <img className="menuIcon" src="/top-arrow_1f51d.png" alt="" />
-        Back to Top
-      </button>
+      {session && (
+        <button className="backToTopButton" onClick={() => scrollToTop()}>
+          <img className="menuIcon" src="/top-arrow_1f51d.png" alt="" />
+          Back to Top
+        </button>
+      )}
+
+      {/* Conditionally display the LogInBtn component if session is not available */}
+      {!session && (
+        <div className="centeredText">
+          <LogInToSeeSaved />
+        </div>
+      )}
     </section>
   );
 }

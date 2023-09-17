@@ -52,7 +52,7 @@ export default function Navbar() {
             />
             Archive
           </Link>
-          <Link className="menubarItem navBarProfile" href="/profile">
+          <Link className="menubarItem navBarProfile" href="/saved">
             <img
               className="menuIcon"
               src="/love-letter_1f48c.png"

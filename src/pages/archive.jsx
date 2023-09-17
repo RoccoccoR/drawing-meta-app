@@ -7,7 +7,17 @@ const fetcher = (url) => fetch(url).then((r) => r.json());
 export default function Archive() {
   const { data, error, isLoading } = useSWR("/api/draws", fetcher);
 
-  if (isLoading) return <div className="centeredText">Loading...</div>;
+  if (isLoading)
+    return (
+      <div className="centeredText">
+        <img
+          className="menuIcon"
+          src="/satellite-antenna_1f4e1.png"
+          alt="Loading"
+        />
+        Loading...
+      </div>
+    );
   if (error)
     return (
       <div className="centeredText">
