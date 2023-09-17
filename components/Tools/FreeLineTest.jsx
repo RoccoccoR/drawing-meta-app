@@ -16,55 +16,68 @@ export default function FreeLineTest({ canvasRef, currentColor }) {
       const context = canvas.getContext("2d");
       context.scale(1, 1);
       context.lineCap = "round";
-      context.lineWidth = 6;
+      context.lineWidth = 4;
       contextRef.current = context;
 
+      canvas.addEventListener("mousedown", startDrawing);
+      canvas.addEventListener("mouseup", finishDrawing);
+      canvas.addEventListener("mousemove", draw);
+      canvas.addEventListener("mouseleave", finishDrawing);
       canvas.addEventListener("touchstart", startDrawing);
       canvas.addEventListener("touchend", finishDrawing);
       canvas.addEventListener("touchmove", draw);
     }
 
     return () => {
+      canvas.removeEventListener("mousedown", startDrawing);
+      canvas.removeEventListener("mouseup", finishDrawing);
+      canvas.removeEventListener("mousemove", draw);
+      canvas.removeEventListener("mouseleave", finishDrawing);
       canvas.removeEventListener("touchstart", startDrawing);
       canvas.removeEventListener("touchend", finishDrawing);
       canvas.removeEventListener("touchmove", draw);
     };
   }, [canvasRef]);
 
-  const startDrawing = ({ touches }) => {
-    const { clientX, clientY } = touches[0];
-    const { offsetX, offsetY } = getPosition(canvasRef.current, {
-      clientX,
-      clientY,
-    });
+  const startDrawing = (event) => {
+    const { offsetX, offsetY } = getPosition(canvasRef.current, event);
     contextRef.current.strokeStyle = currentColor;
     contextRef.current.beginPath();
     contextRef.current.moveTo(offsetX, offsetY);
     setIsDrawing(true);
+    pathsRef.current.push({ x: offsetX, y: offsetY });
   };
 
   const finishDrawing = () => {
     contextRef.current.closePath();
     setIsDrawing(false);
+    pathsRef.current = [];
   };
 
-  const draw = ({ touches }) => {
+  const draw = (event) => {
     if (!isDrawing) {
       return;
     }
-    const { clientX, clientY } = touches[0];
-    const { offsetX, offsetY } = getPosition(canvasRef.current, {
-      clientX,
-      clientY,
-    });
+    const { offsetX, offsetY } = getPosition(canvasRef.current, event);
     contextRef.current.lineTo(offsetX, offsetY);
     contextRef.current.stroke();
+    pathsRef.current.push({ x: offsetX, y: offsetY });
   };
 
-  const getPosition = (canvas, { clientX, clientY }) => {
+  const getPosition = (canvas, event) => {
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
+    let clientX, clientY;
+
+    if (event.type.startsWith("touch")) {
+      clientX = event.touches[0].clientX;
+      clientY = event.touches[0].clientY;
+    } else {
+      clientX = event.clientX;
+      clientY = event.clientY;
+    }
+
     const offsetX = (clientX - rect.left) * scaleX;
     const offsetY = (clientY - rect.top) * scaleY;
     return { offsetX, offsetY };
@@ -74,6 +87,9 @@ export default function FreeLineTest({ canvasRef, currentColor }) {
     <div id="canvasContainer">
       <canvas
         id="canvas"
+        onMouseDown={startDrawing}
+        onMouseUp={finishDrawing}
+        onMouseMove={draw}
         onTouchStart={startDrawing}
         onTouchEnd={finishDrawing}
         onTouchMove={draw}
