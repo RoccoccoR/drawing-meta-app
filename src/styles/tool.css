@@ -6,6 +6,23 @@
   }
 }
 
+.menubarItemSave {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #0f0;
+  cursor: pointer;
+  border-radius: 0.5vh;
+  padding: 0.5vh;
+  margin-left: 1vh;
+  margin-top: 1vh;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  vertical-align: top;
+  min-height: 40px;
+}
+
 .toolButtonsContainer {
   position: absolute;
   bottom: 0;
@@ -30,4 +47,21 @@
     width: 100vw;
     height: 100vh;
   }
+}
+
+.saveMessage {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 0.5vh;
+  padding: 0.5vh;
+  margin-left: 1vh;
+  margin-top: 1vh;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  vertical-align: top;
+  min-height: 40px;
 }

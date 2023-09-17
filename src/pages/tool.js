@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import { isMobile, isBrowser } from "react-device-detect"; // Import isMobile and isBrowser
 import LogInBtnToSave from "../../components/LogInBtn/LogInBtnToSave";
 import FreeLineOnly from "../../components/Tools/FreeLineOnly";
+import Link from "next/link";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -79,12 +80,12 @@ export default function Tool() {
         // Save drawing data to local storage
         saveDrawingToLocalStorage(image);
 
-        setSaveMessage("Drawing saved in the profile page"); // Set save message
+        setSaveMessage("Go to Saved to see it!");
 
-        // Clear the message after 2 seconds
+        // Clear the message after 2,5 seconds
         setTimeout(() => {
           setSaveMessage("");
-        }, 2000);
+        }, 2500);
       } else {
         console.error("Failed to save drawing");
       }
@@ -237,7 +238,18 @@ export default function Tool() {
             <div className="toolContainer">
               <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
               <section className="toolButtonsContainer">
-                {saveMessage && <p>{saveMessage}</p>}
+                {saveMessage && (
+                  <Link href="/saved">
+                    <p className="menubarItemSave">
+                      <img
+                        className="menuIcon"
+                        src="up-arrow_2b06-fe0f.png"
+                        alt="Profile"
+                      />
+                      {saveMessage}
+                    </p>
+                  </Link>
+                )}
                 {session ? (
                   <>
                     <button
@@ -375,7 +387,18 @@ export default function Tool() {
             <div className="toolContainer">
               <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
               <section className="toolButtonsContainer">
-                {saveMessage && <p>{saveMessage}</p>}
+                {saveMessage && (
+                  <Link href="/saved">
+                    <p className="menubarItemSave">
+                      <img
+                        className="menuIcon"
+                        src="up-arrow_2b06-fe0f.png"
+                        alt="Profile"
+                      />
+                      {saveMessage}
+                    </p>
+                  </Link>
+                )}
                 {session ? (
                   <>
                     <button

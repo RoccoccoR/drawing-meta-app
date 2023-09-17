@@ -75,7 +75,8 @@ export default function Tool() {
       <div className="toolContainer">
         <FreeLineOnly canvasRef={canvasRef} currentColor={currentColor} />
         <section className="toolButtonsContainer">
-          {saveMessage && <p>{saveMessage}</p>} {/* Display save message */}
+          {saveMessage && <p className="menubarItem">{saveMessage}</p>}{" "}
+          {/* Display save message */}
           {session ? (
             <>
               <button className="saveButton" onClick={handleSaveClick}>
