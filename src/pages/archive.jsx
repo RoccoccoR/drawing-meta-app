@@ -57,6 +57,7 @@ export default function Archive() {
                 src={drawing.imageData}
                 alt={`Drawing by ${drawing.userId}`}
               />
+              {/* <>{drawing._id}</> */}
             </div>
           </div>
         ))}
