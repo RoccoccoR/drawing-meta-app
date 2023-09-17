@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 export default function IntroText() {
   const text =
-    "Hey, My name is Rocco! I created this app to help you explore your creativity and to have fun. You can Scan the QR code to open the app in your device during the presentation.";
+    "Hey, my name is Rocco! I created this app to help you explore your creativity and have fun. You can scan the QR code to open the app in your device during the presentation. Login to start drawing, enjoy!";
   const [displayText, setDisplayText] = useState("");
   const speed = 50; // Adjust the speed as needed
   const [currentIndex, setCurrentIndex] = useState(0);

@@ -95,9 +95,37 @@ canvas {
 }
 
 .introText {
-  font-size: 4rem;
+  font-size: 3rem;
   width: 90%;
   margin: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .introText {
+    font-size: 2.5rem;
+  }
+
+  .QRCode {
+    position: absolute;
+    top: 72%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .introText {
+    font-size: 2rem;
+  }
+
+  .QRCode {
+    position: absolute;
+    top: 72%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10vh;
+  }
 }
 
 a {
@@ -114,10 +142,4 @@ button {
   color: inherit;
   cursor: pointer;
   outline: none;
-}
-
-@media (max-width: 767px) {
-  .introText {
-    font-size: 2rem;
-  }
 }
