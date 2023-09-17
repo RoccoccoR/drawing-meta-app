@@ -16,7 +16,7 @@ export default function Navbar() {
   return (
     <div className="menuContainer">
       {isOpen ? (
-        <button className="menubarItem navBarMenu" onClick={closeMenu}>
+        <button className="menubarItem navBarMenuClose" onClick={closeMenu}>
           <>
             <img
               className="menuIcon"
