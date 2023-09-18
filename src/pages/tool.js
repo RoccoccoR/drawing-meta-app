@@ -17,6 +17,24 @@ export default function Tool() {
   const [showColors, setShowColors] = useState(false);
   // Load saved drawing data from local storage when the component mounts
   useEffect(() => {
+    const handleOrientationChange = () => {
+      // Check for landscape orientation on the client side
+      setIsLandscape(window.matchMedia("(orientation: landscape)").matches);
+    };
+
+    // Add an event listener to re-check orientation when the window is resized
+    window.addEventListener("resize", handleOrientationChange);
+
+    // Initial check
+    handleOrientationChange();
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", handleOrientationChange);
+    };
+  }, []);
+
+  useEffect(() => {
     const savedDrawingData = localStorage.getItem("savedDrawing");
     if (savedDrawingData) {
       const { imageData } = JSON.parse(savedDrawingData);
@@ -28,27 +46,7 @@ export default function Tool() {
         context.drawImage(img, 0, 0);
       };
     }
-  }, []);
 
-  useEffect(() => {
-    // Check for landscape orientation on the client side
-    const checkOrientation = () => {
-      setIsLandscape(window.matchMedia("(orientation: landscape)").matches);
-    };
-
-    // Add an event listener to re-check orientation when the window is resized
-    window.addEventListener("resize", checkOrientation);
-
-    // Initial check
-    checkOrientation();
-
-    // Clean up the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("resize", checkOrientation);
-    };
-  }, []);
-
-  useEffect(() => {
     const handleTouchMove = (e) => {
       // Prevent the default touchmove behavior to disable swipe
       e.preventDefault();
@@ -63,6 +61,8 @@ export default function Tool() {
 
     // Clean up the touchmove event listener when the component unmounts
     return () => {
+      window.removeEventListener("resize", checkOrientation);
+
       // Remove the touchmove event listener
       if (isMobile) {
         document.removeEventListener("touchmove", handleTouchMove);
@@ -460,7 +460,7 @@ export default function Tool() {
         </>
       )}
       {isMobile && isLandscape && (
-        <div className="centeredText">Please rotate your device :)</div>
+        <div className="centeredText">Please rotate your device &#128579;</div>
       )}
       {/* {!isMobile && !isLandscape && <p>This is not a mobile device</p>} */}
     </div>
