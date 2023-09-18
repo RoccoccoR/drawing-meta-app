@@ -437,7 +437,7 @@ export default function Tool() {
         </>
       )}
       {isMobile && isLandscape && (
-        <div className="centeredText">Please rotate your device :)</div>
+        <div className="centeredText">Please rotate your device &#128579;</div>
       )}
       {/* {!isMobile && !isLandscape && <p>This is not a mobile device</p>} */}
     </div>
