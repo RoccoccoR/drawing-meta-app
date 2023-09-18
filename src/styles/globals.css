@@ -97,7 +97,10 @@ canvas {
 .introText {
   font-size: 3rem;
   width: 90%;
-  margin: 3rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  margin-bottom: 3rem;
+  margin-top: 2rem;
 }
 
 @media (max-width: 1024px) {
