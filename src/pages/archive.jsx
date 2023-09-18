@@ -30,6 +30,9 @@ export default function Archive() {
     (drawing) => drawing.published === true
   );
 
+  // Reverse the order of publishedDrawings
+  publishedDrawings.reverse();
+
   // Define the responsive columns object
   const responsiveColumns = {
     640: 1, // 1 column on screens wider than or equal to 640px
@@ -42,7 +45,7 @@ export default function Archive() {
   function scrollToTop() {
     window.scrollTo({
       top: 0,
-      behavior: "smooth", // Optional: Add smooth scrolling behavior
+      behavior: "smooth",
     });
   }
 
