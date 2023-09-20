@@ -11,8 +11,9 @@ export default async function handler(request, response) {
       const { page, pageSize } = request.query; // Add query parameters for pagination
 
       const draws = await Draw.find()
-        .skip((page - 1) * pageSize) // Calculate the number of documents to skip
-        .limit(pageSize); // Limit the number of documents to retrieve per request
+        .skip((page - 1) * pageSize)
+        .limit(pageSize)
+        .select("imageData _id");
 
       if (!draws) {
         return response.status(404).json({ status: "Not Found" });
