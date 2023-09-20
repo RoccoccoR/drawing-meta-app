@@ -1,3 +1,9 @@
+export const config = {
+  api: {
+    responseLimit: false,
+  },
+};
+
 import dbConnect from "../../../../db/connect";
 import Draw from "../../../../db/models/DrawModel";
 import { getSession } from "next-auth/react";
@@ -8,12 +14,8 @@ export default async function handler(request, response) {
   if (request.method === "GET") {
     try {
       const session = await getSession({ request });
-      const { page, pageSize } = request.query; // Add query parameters for pagination
 
-      const draws = await Draw.find()
-        .skip((page - 1) * pageSize)
-        .limit(pageSize)
-        .select("imageData _id");
+      const draws = await Draw.find();
 
       if (!draws) {
         return response.status(404).json({ status: "Not Found" });
