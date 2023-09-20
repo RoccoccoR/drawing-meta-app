@@ -2,6 +2,12 @@ import dbConnect from "../../../../db/connect";
 import Draw from "../../../../db/models/DrawModel";
 import { getSession } from "next-auth/react";
 
+export const config = {
+  api: {
+    responseLimit: false,
+  },
+};
+
 export default async function handler(request, response) {
   await dbConnect();
 
