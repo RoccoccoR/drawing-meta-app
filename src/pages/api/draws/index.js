@@ -2,20 +2,17 @@ import dbConnect from "../../../../db/connect";
 import Draw from "../../../../db/models/DrawModel";
 import { getSession } from "next-auth/react";
 
-export const config = {
-  api: {
-    responseLimit: false,
-  },
-};
-
 export default async function handler(request, response) {
   await dbConnect();
 
   if (request.method === "GET") {
     try {
       const session = await getSession({ request });
+      const { page, pageSize } = request.query; // Add query parameters for pagination
 
-      const draws = await Draw.find();
+      const draws = await Draw.find()
+        .skip((page - 1) * pageSize) // Calculate the number of documents to skip
+        .limit(pageSize); // Limit the number of documents to retrieve per request
 
       if (!draws) {
         return response.status(404).json({ status: "Not Found" });

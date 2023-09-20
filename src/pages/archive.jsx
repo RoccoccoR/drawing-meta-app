@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Masonry from "react-layout-masonry";
 import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
 export default function Archive() {
-  const { data, error, isLoading } = useSWR("/api/draws", fetcher);
+  const [page, setPage] = useState(1);
+  const pageSize = 100; // Number of drawings to fetch per page
+
+  const { data, error, isLoading } = useSWR(
+    `/api/draws?page=${page}&pageSize=${pageSize}`,
+    fetcher
+  );
 
   if (isLoading)
     return (
@@ -49,6 +55,10 @@ export default function Archive() {
     });
   }
 
+  function loadMore() {
+    setPage(page + 1); // Increment the page number to fetch the next page of data
+  }
+
   return (
     <section className="masonry">
       <Masonry columns={responsiveColumns} gap={16}>
@@ -60,11 +70,13 @@ export default function Archive() {
                 src={drawing.imageData}
                 alt={`Drawing by ${drawing.userId}`}
               />
-              {/* <>{drawing._id}</> */}
             </div>
           </div>
         ))}
       </Masonry>
+      <button className="loadMoreButton" onClick={loadMore}>
+        Load More
+      </button>
       <button className="backToTopButton" onClick={() => scrollToTop()}>
         <img className="menuIcon" src="/top-arrow_1f51d.png" alt="" />
         Back to Top
