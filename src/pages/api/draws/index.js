@@ -1,8 +1,8 @@
-export const config = {
-  api: {
-    responseLimit: false,
-  },
-};
+// export const config = {
+//   api: {
+//     responseLimit: false,
+//   },
+// };
 
 import dbConnect from "../../../../db/connect";
 import Draw from "../../../../db/models/DrawModel";

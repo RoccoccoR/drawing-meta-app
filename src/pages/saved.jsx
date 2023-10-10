@@ -153,8 +153,8 @@ export default function Profile() {
                   alt={`Drawing by ${drawing.userId}`}
                 />
               </div>
-              {/* <h1>{drawing._id}</h1>
-            <h1>{drawing.user}</h1> */}
+              <h1>{drawing._id}</h1>
+              <h1>{drawing.user}</h1>
               <div className="toolButtonsContainerProfile">
                 <button
                   className="menubarItemA navBarMenu"
