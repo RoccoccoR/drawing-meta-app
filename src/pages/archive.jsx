@@ -20,8 +20,11 @@ export default function Archive() {
     );
   if (error)
     return (
+      // <div className="centeredText">
+      //   No drawings here, <br></br> try to refresh!
+      // </div>
       <div className="centeredText">
-        No drawings here, <br></br> try to refresh!
+        Soon available... <br></br>
       </div>
     );
 
